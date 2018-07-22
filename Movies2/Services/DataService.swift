@@ -42,16 +42,34 @@ class DataService{
                             let voteAverage = item["vote_average"].doubleValue
                             let overview = item["overview"].stringValue
                             let releaseDate = item["release_date"].stringValue
-                            var imgUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)")
-                            var img: UIImage?
-                            //Getting image of url using AlamofireImage
-                            Alamofire.request(imgUrl!).responseImage(completionHandler: { (response) in
-                               
-                                img = response.result.value
-                            })
+                            let imgUrl = "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)"
                             
+//                            var imgUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)")
+//
+//                            var img: UIImage?
+//                            //Getting image of url using AlamofireImage
+//                            Alamofire.request(imgUrl!).responseImage(completionHandler: { (response) in
+//
+//                                img = response.result.value
+//                            })
                             
-                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, poster: img!)
+//                            var img: UIImage?
+//
+//                            Alamofire.request(imgUrl).responseImage { response in
+////                                debugPrint(response)
+////
+////                                print(response.request)
+////                                print(response.response)
+////                                debugPrint(response.result)
+//
+//                                if let image = response.result.value {
+//                                    img = image
+//                                }
+//                            }
+//
+//
+                            
+                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, poster: imgUrl)
                             self.movies.append(movie)
                             
                             

@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import AlamofireImage
+import Alamofire
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var moviePosterPic: UIImageView!
     
+    var movie: Movie!{
+        didSet{
+            //print("Here")
+            //moviePosterPic.image = movie.poster!
+            moviePosterPic.af_setImage(withURL: URL(string: movie.poster!)!)
+        }
+    }
 }

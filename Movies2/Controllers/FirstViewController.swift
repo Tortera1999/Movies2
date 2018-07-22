@@ -4,21 +4,21 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var moviesTableView: UITableView!
     
-    var marioPictures: [String] = []
+    var movies: [Movie] = []
     
     var genretitles: [String] = ["Comedy", "Action", "Romance", "Kids", "Hi"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        marioPictures = ["mario1.jpg", "mario2.png", "mario3.jpeg", "mario4.png"]
+        //marioPictures = ["mario1.jpg", "mario2.png", "mario3.jpeg", "mario4.png"]
         
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         
         DataService.instance.downloadDataBasedOnGenre(completion: { (success) in
             if(success){
-               print(DataService.instance.movies[0].overview)
+               self.movies = DataService.instance.movies
             }
             else{
                 print("False")
@@ -41,6 +41,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieTableCell") as! MovieTableViewCell
+        cell.movieCollectionView.reloadData()
         //cell.genreTitle.text = genretitles[indexPath.row]
         return cell
     }
@@ -53,12 +54,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return marioPictures.count
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionCell", for: indexPath) as! MovieCollectionViewCell
-        cell.moviePosterPic.image = UIImage(named: marioPictures[indexPath.row])
+        //print(movies)
+        cell.movie = movies[indexPath.row]
+        //cell.moviePosterPic.image = UIImage(named: marioPictures[indexPath.row])
         return cell
     }
     
