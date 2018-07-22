@@ -35,7 +35,7 @@ class DataService{
                     if let array = json["results"].array{
                         
                         self.movies = []
-                        
+                        var count = 0
                         for item in array{
                             let title = item["title"].stringValue
                             let id = item["id"].intValue
@@ -43,17 +43,13 @@ class DataService{
                             let overview = item["overview"].stringValue
                             let releaseDate = item["release_date"].stringValue
                             var imgUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)")
-                            var img: UIImage?
-                            //Getting image of url using AlamofireImage
-                            Alamofire.request(imgUrl!).responseImage(completionHandler: { (response) in
-                               
-                                img = response.result.value
-                            })
+                          
                             
                             
-                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, poster: img!)
+                            
+                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, poster: img)
                             self.movies.append(movie)
-                            
+                            count += 1
                             
                         }
                         
@@ -72,5 +68,13 @@ class DataService{
         
     }
     
+    func retrieveImages(i: Int,url: URL, completion: @escaping CompletionHandler){
+        Alamofire.request(url).responseImage { (response) in
+            if(response.result.error == nil){
+            guard let image = response.result.value else {return}
+                
+            }
+        }
+    }
     
 }
