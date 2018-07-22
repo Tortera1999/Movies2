@@ -15,15 +15,15 @@ class DataService{
     
     static let instance = DataService()
     
-    var movieTitles: [String] = []
+    var movies: [Movie] = []
     
     
     
-    func downloadTitlesBasedOnGenre(completion: @escaping CompletionHandler, genreID: Int){
+    func downloadDataBasedOnGenre(completion: @escaping CompletionHandler, genreID: Int){
         
-        self.movieTitles = []
+     
         
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=50670e9c1d4037bc568a8aa9969c14f4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=\(genreID)")
+        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=50670e9c1d4037bc568a8aa9969c14f4&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=\(genreID)&region=US")
         
         Alamofire.request(url!).responseJSON { (response) in
             if(response.result.error == nil){
@@ -32,9 +32,19 @@ class DataService{
                     let json = try JSON(data: data)
                     
                     if let array = json["results"].array{
+                        
+                        self.movies = []
+                        
                         for item in array{
-                            self.movieTitles.append("\(item["original_title"].stringValue)")
+                            let title = item["title"].stringValue
+                            let id = item["id"].intValue
+                            let voteAverage = item["vote_average"].doubleValue
+                            let overview = item["overview"].stringValue
+                            let releaseDate = item["release_date"].stringValue
+                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate)
+                            self.movies.append(movie)
                         }
+                        
                     }
                 }catch{
                     
