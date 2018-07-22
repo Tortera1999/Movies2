@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
+import AlamofireImage
 
 class DataService{
     
@@ -41,8 +42,19 @@ class DataService{
                             let voteAverage = item["vote_average"].doubleValue
                             let overview = item["overview"].stringValue
                             let releaseDate = item["release_date"].stringValue
-                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate)
+                            var imgUrl = URL(string: "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)")
+                            var img: UIImage?
+                            //Getting image of url using AlamofireImage
+                            Alamofire.request(imgUrl!).responseImage(completionHandler: { (response) in
+                               
+                                img = response.result.value
+                            })
+                            
+                            
+                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, poster: img!)
                             self.movies.append(movie)
+                            
+                            
                         }
                         
                     }
