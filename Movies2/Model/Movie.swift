@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Movie{
     var movieTitle: String?
@@ -14,12 +15,14 @@ class Movie{
     var voteAverage: Double?
     var overview: String?
     var releaseDate: String?
+    var poster: UIImage?
     
-    init(movieTitle: String, id: Int, voteAverage: Double, overview: String, releaseDate: String){
+    init(movieTitle: String, id: Int, voteAverage: Double, overview: String, releaseDate: String, poster: UIImage){
         self.movieTitle = movieTitle
         self.id = id
         self.voteAverage = voteAverage
         self.overview = overview
         self.releaseDate = releaseDate
+        self.poster = poster
     }
 }

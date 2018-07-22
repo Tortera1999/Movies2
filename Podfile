@@ -6,8 +6,9 @@ target 'Movies2' do
   use_frameworks!
 
     pod 'Alamofire', '~> 4.4'
-    pod 'AlamofireImage'
+   
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'AlamofireImage', '~> 3.3'
 
   # Pods for Movies2
 
