@@ -16,6 +16,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         
+        DataService.instance.downloadTitlesBasedOnGenre(completion: { (success) in
+            if(success){
+               print(DataService.instance.movieTitles)
+            }
+            else{
+                print("False")
+            }
+        }, genreID: ACTION_ID)
+        
         moviesTableView.reloadData()
         
         // Do any additional setup after loading the view, typically from a nib.

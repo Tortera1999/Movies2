@@ -175,12 +175,12 @@
 			children = (
 				D51286FF2104A47300BF2689 /* AppDelegate.swift */,
 				C750F9002104ADB700E9D250 /* Utilities */,
-				D51287012104A47300BF2689 /* ViewController.swift */,
 				C750F9032104ADEA00E9D250 /* Services */,
 				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
 				D51287322104A70600BF2689 /* MovieTableViewCell.swift */,
 				D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */,
 				D51287032104A47300BF2689 /* Main.storyboard */,
+				D51287012104A47300BF2689 /* ViewController.swift */,
 				D51287092104A47300BF2689 /* Assets.xcassets */,
 				D51287382104A7CA00BF2689 /* mario1.jpg */,
 				D51287362104A7CA00BF2689 /* mario2.png */,
