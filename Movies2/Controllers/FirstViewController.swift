@@ -13,6 +13,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         //marioPictures = ["mario1.jpg", "mario2.png", "mario3.jpeg", "mario4.png"]
         
+         NotificationCenter.default.addObserver(self, selector: #selector(FirstViewController.reloadTableView(_:)), name: Notification.Name("notifUserDataChanged"), object: nil)
+        
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         
@@ -33,6 +35,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func reloadTableView(_ notif: Notification){
+        moviesTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
