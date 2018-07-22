@@ -25,7 +25,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             else{
                 print("False")
             }
-        }, genreID: ACTION_ID)
+        }, genreID: THRILLER_ID)
         
         moviesTableView.reloadData()
         
