@@ -11,6 +11,7 @@
 		BAB2CB60ACC543CC95E02C15 /* Pods_Movies2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B91AB0C9A6105D721D5783 /* Pods_Movies2.framework */; };
 		C750F9022104ADB700E9D250 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F9012104ADB700E9D250 /* Constants.swift */; };
 		C750F9052104ADEA00E9D250 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F9042104ADEA00E9D250 /* DataService.swift */; };
+		C750F9092104B44E00E9D250 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F9082104B44E00E9D250 /* Movie.swift */; };
 		D51287002104A47300BF2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51286FF2104A47300BF2689 /* AppDelegate.swift */; };
 		D51287022104A47300BF2689 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287012104A47300BF2689 /* ViewController.swift */; };
 		D51287052104A47300BF2689 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51287032104A47300BF2689 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		B5C0385787858C9428BF33B1 /* Pods-Movies2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movies2UITests/Pods-Movies2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		C750F9012104ADB700E9D250 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C750F9042104ADEA00E9D250 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		C750F9082104B44E00E9D250 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D3EA2E10B8B84CE6FD0168A2 /* Pods-Movies2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movies2/Pods-Movies2.debug.xcconfig"; sourceTree = "<group>"; };
 		D51286FC2104A47300BF2689 /* Movies2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51286FF2104A47300BF2689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,25 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		C750F9062104B3DE00E9D250 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
+				D51287012104A47300BF2689 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C750F9072104B41100E9D250 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */,
+				D51287322104A70600BF2689 /* MovieTableViewCell.swift */,
+				C750F9082104B44E00E9D250 /* Movie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D51286F32104A47200BF2689 = {
 			isa = PBXGroup;
 			children = (
@@ -173,14 +194,12 @@
 		D51286FE2104A47300BF2689 /* Movies2 */ = {
 			isa = PBXGroup;
 			children = (
+				C750F9072104B41100E9D250 /* Model */,
+				C750F9062104B3DE00E9D250 /* Controllers */,
 				D51286FF2104A47300BF2689 /* AppDelegate.swift */,
 				C750F9002104ADB700E9D250 /* Utilities */,
 				C750F9032104ADEA00E9D250 /* Services */,
-				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
-				D51287322104A70600BF2689 /* MovieTableViewCell.swift */,
-				D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */,
 				D51287032104A47300BF2689 /* Main.storyboard */,
-				D51287012104A47300BF2689 /* ViewController.swift */,
 				D51287092104A47300BF2689 /* Assets.xcassets */,
 				D51287382104A7CA00BF2689 /* mario1.jpg */,
 				D51287362104A7CA00BF2689 /* mario2.png */,
@@ -514,6 +533,7 @@
 			files = (
 				D51287332104A70600BF2689 /* MovieTableViewCell.swift in Sources */,
 				D51287022104A47300BF2689 /* ViewController.swift in Sources */,
+				C750F9092104B44E00E9D250 /* Movie.swift in Sources */,
 				D51287082104A47300BF2689 /* Movies2.xcdatamodeld in Sources */,
 				D51287352104A71400BF2689 /* MovieCollectionViewCell.swift in Sources */,
 				C750F9022104ADB700E9D250 /* Constants.swift in Sources */,

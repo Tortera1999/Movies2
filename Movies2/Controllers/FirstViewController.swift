@@ -16,9 +16,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         
-        DataService.instance.downloadTitlesBasedOnGenre(completion: { (success) in
+        DataService.instance.downloadDataBasedOnGenre(completion: { (success) in
             if(success){
-               print(DataService.instance.movieTitles)
+               print(DataService.instance.movies[0].overview)
             }
             else{
                 print("False")
