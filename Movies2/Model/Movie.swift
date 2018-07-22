@@ -15,9 +15,9 @@ class Movie{
     var voteAverage: Double?
     var overview: String?
     var releaseDate: String?
-    var poster: UIImage?
+    var poster: String?
     
-    init(movieTitle: String, id: Int, voteAverage: Double, overview: String, releaseDate: String, poster: UIImage){
+    init(movieTitle: String, id: Int, voteAverage: Double, overview: String, releaseDate: String, poster: String){
         self.movieTitle = movieTitle
         self.id = id
         self.voteAverage = voteAverage
