@@ -25,4 +25,8 @@ class Movie{
         self.releaseDate = releaseDate
         self.poster = poster
     }
+    
+    func toString(){
+        print(self.movieTitle!)
+    }
 }

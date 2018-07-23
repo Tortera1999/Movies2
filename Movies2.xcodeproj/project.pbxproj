@@ -27,6 +27,7 @@
 		D512873B2104A7CB00BF2689 /* mario4.png in Resources */ = {isa = PBXBuildFile; fileRef = D51287372104A7CA00BF2689 /* mario4.png */; };
 		D512873C2104A7CB00BF2689 /* mario1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51287382104A7CA00BF2689 /* mario1.jpg */; };
 		D512873D2104A7CB00BF2689 /* mario3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D51287392104A7CB00BF2689 /* mario3.jpeg */; };
+		D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1B2105B26F00077A66 /* DetailViewController.swift */; };
 		DEBBB10956FC94A708E3DED3 /* Pods_Movies2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C6C9C3FFAF7CE7EACE185C /* Pods_Movies2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		D51287372104A7CA00BF2689 /* mario4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario4.png; sourceTree = "<group>"; };
 		D51287382104A7CA00BF2689 /* mario1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mario1.jpg; sourceTree = "<group>"; };
 		D51287392104A7CB00BF2689 /* mario3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mario3.jpeg; sourceTree = "<group>"; };
+		D51AEE1B2105B26F00077A66 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			children = (
 				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
 				D51287012104A47300BF2689 /* ViewController.swift */,
+				D51AEE1B2105B26F00077A66 /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				D51287352104A71400BF2689 /* MovieCollectionViewCell.swift in Sources */,
 				C750F9022104ADB700E9D250 /* Constants.swift in Sources */,
 				D51287002104A47300BF2689 /* AppDelegate.swift in Sources */,
+				D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */,
 				D51287312104A5FA00BF2689 /* FirstViewController.swift in Sources */,
 				C750F9052104ADEA00E9D250 /* DataService.swift in Sources */,
 			);
