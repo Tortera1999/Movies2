@@ -27,12 +27,8 @@
 		D51287312104A5FA00BF2689 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287302104A5FA00BF2689 /* FirstViewController.swift */; };
 		D51287332104A70600BF2689 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287322104A70600BF2689 /* MovieTableViewCell.swift */; };
 		D51287352104A71400BF2689 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */; };
-
-		D512873A2104A7CB00BF2689 /* mario2.png in Resources */ = {isa = PBXBuildFile; fileRef = D51287362104A7CA00BF2689 /* mario2.png */; };
-		D512873B2104A7CB00BF2689 /* mario4.png in Resources */ = {isa = PBXBuildFile; fileRef = D51287372104A7CA00BF2689 /* mario4.png */; };
-		D512873C2104A7CB00BF2689 /* mario1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51287382104A7CA00BF2689 /* mario1.jpg */; };
-		D512873D2104A7CB00BF2689 /* mario3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D51287392104A7CB00BF2689 /* mario3.jpeg */; };
 		D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1B2105B26F00077A66 /* DetailViewController.swift */; };
+		D51AEE1E21063FA100077A66 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1D21063FA100077A66 /* LoginViewController.swift */; };
 		DEBBB10956FC94A708E3DED3 /* Pods_Movies2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C6C9C3FFAF7CE7EACE185C /* Pods_Movies2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,12 +83,8 @@
 		D51287302104A5FA00BF2689 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		D51287322104A70600BF2689 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
-
-		D51287362104A7CA00BF2689 /* mario2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario2.png; sourceTree = "<group>"; };
-		D51287372104A7CA00BF2689 /* mario4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario4.png; sourceTree = "<group>"; };
-		D51287382104A7CA00BF2689 /* mario1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mario1.jpg; sourceTree = "<group>"; };
-		D51287392104A7CB00BF2689 /* mario3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mario3.jpeg; sourceTree = "<group>"; };
 		D51AEE1B2105B26F00077A66 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D51AEE1D21063FA100077A66 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,10 +159,9 @@
 			children = (
 				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
 				D51287012104A47300BF2689 /* ViewController.swift */,
-
 				D51AEE1B2105B26F00077A66 /* DetailViewController.swift */,
 				C750F90E21051F8500E9D250 /* SearchVC.swift */,
-
+				D51AEE1D21063FA100077A66 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +264,7 @@
 				D51286F92104A47300BF2689 /* Frameworks */,
 				D51286FA2104A47300BF2689 /* Resources */,
 				2C433370BC06690844197D08 /* [CP] Embed Pods Frameworks */,
+				A378B52E039A2378FB729E32 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,6 +283,8 @@
 				D512870F2104A47300BF2689 /* Sources */,
 				D51287102104A47300BF2689 /* Frameworks */,
 				D51287112104A47300BF2689 /* Resources */,
+				7B67EA761885817329A2AEFD /* [CP] Embed Pods Frameworks */,
+				467F430D9CB639FB7B8A213E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -310,6 +304,8 @@
 				D512871A2104A47300BF2689 /* Sources */,
 				D512871B2104A47300BF2689 /* Frameworks */,
 				D512871C2104A47300BF2689 /* Resources */,
+				8E7A88941693A2460B09E760 /* [CP] Embed Pods Frameworks */,
+				D668CBE74983290D9FC84F6E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -422,17 +418,70 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Movies2/Pods-Movies2-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movies2/Pods-Movies2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		467F430D9CB639FB7B8A213E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movies2Tests/Pods-Movies2Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B67EA761885817329A2AEFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movies2Tests/Pods-Movies2Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E7A88941693A2460B09E760 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movies2UITests/Pods-Movies2UITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C835F06E4E1AD0928F07141 /* [CP] Check Pods Manifest.lock */ = {
@@ -453,6 +502,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A378B52E039A2378FB729E32 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movies2/Pods-Movies2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D5E8467E4C5C2F1A4E1718E5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -471,6 +535,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D668CBE74983290D9FC84F6E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movies2UITests/Pods-Movies2UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -481,6 +560,7 @@
 				D51287332104A70600BF2689 /* MovieTableViewCell.swift in Sources */,
 				C750F90F21051F8500E9D250 /* SearchVC.swift in Sources */,
 				C750F90D21051C7000E9D250 /* InsetTextField.swift in Sources */,
+				D51AEE1E21063FA100077A66 /* LoginViewController.swift in Sources */,
 				D51287022104A47300BF2689 /* ViewController.swift in Sources */,
 				C750F9092104B44E00E9D250 /* Movie.swift in Sources */,
 				C750F91321052E6D00E9D250 /* SearchData.swift in Sources */,
@@ -489,9 +569,7 @@
 				C750F9022104ADB700E9D250 /* Constants.swift in Sources */,
 				D51287002104A47300BF2689 /* AppDelegate.swift in Sources */,
 				D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */,
-
 				C750F91121052D6F00E9D250 /* SearchTableViewCell.swift in Sources */,
-
 				D51287312104A5FA00BF2689 /* FirstViewController.swift in Sources */,
 				C750F9052104ADEA00E9D250 /* DataService.swift in Sources */,
 			);

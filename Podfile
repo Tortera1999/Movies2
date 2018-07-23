@@ -9,6 +9,10 @@ target 'Movies2' do
    
     pod 'SwiftyJSON', '~> 4.0'
     pod 'AlamofireImage', '~> 3.3'
+    pod ‘Firebase/Core’
+    pod ‘Firebase/Database’
+    pod ‘Firebase/Auth’
+    pod ‘Firebase/Storage’
 
   # Pods for Movies2
 
