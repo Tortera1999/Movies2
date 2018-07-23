@@ -87,11 +87,18 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             else{
                 print("False")
             }
+
             
             self.group.notify(queue: .main, execute: {
                 print("Finished request \(self.b)")
             })
         }, genreID: gId)
+
+        }, genreID: THRILLER_ID)
+        
+        moviesTableView.reloadData()
+        
+        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {

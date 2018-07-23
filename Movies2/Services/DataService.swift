@@ -9,6 +9,7 @@ class DataService{
     static let instance = DataService()
     
     var movies: [Movie] = []
+    var searches: [SearchData] = []
     
     
     
@@ -22,7 +23,7 @@ class DataService{
                     guard let data = response.data else { return }
                     do{
                         let json = try JSON(data: data)
-                        
+
                         if let array = json["results"].array{
                             
                             self.movies = []
@@ -68,7 +69,23 @@ class DataService{
                             }
                         }
                     }catch{
-                        
+
+                        for item in array{
+                            let title = item["title"].stringValue
+                            let id = item["id"].intValue
+                            let voteAverage = item["vote_average"].doubleValue
+                            let overview = item["overview"].stringValue
+                            let releaseDate = item["release_date"].stringValue
+                            let imgUrl = "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)"
+                            
+                         
+                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: releaseDate, poster: imgUrl)
+                            self.movies.append(movie)
+                            NotificationCenter.default.post(name: Notification.Name("notifUserDataChanged"), object: nil)
+                            
+                            
+}
+
                     }
                     
                     completion(true)
@@ -81,6 +98,55 @@ class DataService{
         }
         
         
+        
+    }
+    
+    func getKeywordRelatedMovieData(text: String, completion: @escaping CompletionHandler){
+        
+        
+        
+        let textNew = text.replacingOccurrences(of: " ", with: "%20")
+        
+        var url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=50670e9c1d4037bc568a8aa9969c14f4&query=\(textNew)&page=1&language=en&include_adult=true")
+        
+        
+        
+        print(" \n URL: \(url)  \n text: \(textNew)")
+        
+        Alamofire.request(url!).responseJSON { (response) in
+            if(response.result.error == nil){
+                guard let data = response.data else { return }
+                do{
+                    let json = try JSON(data: data)
+                    
+                    if let array = json["results"].array{
+                        
+                        self.searches = []
+                        
+                        for item in array{
+                            let title = item["title"].stringValue
+                            let releaseDate = item["release_date"].stringValue
+                            let imgUrl = "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)"
+                            
+                            
+                            let search = SearchData(movieImage: imgUrl, movieTitle: title, releaseLabel: releaseDate)
+                            self.searches.append(search)
+                            NotificationCenter.default.post(name: Notification.Name("SearchUpdated"), object: nil)
+                            
+                            
+                        }
+                    }
+                }catch{
+                    
+                }
+                
+                completion(true)
+            }else{
+                debugPrint(response.result.error)
+                completion(false)
+                
+            }
+        }
         
     }
     

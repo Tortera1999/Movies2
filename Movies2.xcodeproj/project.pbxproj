@@ -12,6 +12,10 @@
 		C750F9022104ADB700E9D250 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F9012104ADB700E9D250 /* Constants.swift */; };
 		C750F9052104ADEA00E9D250 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F9042104ADEA00E9D250 /* DataService.swift */; };
 		C750F9092104B44E00E9D250 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F9082104B44E00E9D250 /* Movie.swift */; };
+		C750F90D21051C7000E9D250 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F90C21051C7000E9D250 /* InsetTextField.swift */; };
+		C750F90F21051F8500E9D250 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F90E21051F8500E9D250 /* SearchVC.swift */; };
+		C750F91121052D6F00E9D250 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F91021052D6F00E9D250 /* SearchTableViewCell.swift */; };
+		C750F91321052E6D00E9D250 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750F91221052E6D00E9D250 /* SearchData.swift */; };
 		D51287002104A47300BF2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51286FF2104A47300BF2689 /* AppDelegate.swift */; };
 		D51287022104A47300BF2689 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287012104A47300BF2689 /* ViewController.swift */; };
 		D51287052104A47300BF2689 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51287032104A47300BF2689 /* Main.storyboard */; };
@@ -23,6 +27,7 @@
 		D51287312104A5FA00BF2689 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287302104A5FA00BF2689 /* FirstViewController.swift */; };
 		D51287332104A70600BF2689 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287322104A70600BF2689 /* MovieTableViewCell.swift */; };
 		D51287352104A71400BF2689 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */; };
+
 		D512873A2104A7CB00BF2689 /* mario2.png in Resources */ = {isa = PBXBuildFile; fileRef = D51287362104A7CA00BF2689 /* mario2.png */; };
 		D512873B2104A7CB00BF2689 /* mario4.png in Resources */ = {isa = PBXBuildFile; fileRef = D51287372104A7CA00BF2689 /* mario4.png */; };
 		D512873C2104A7CB00BF2689 /* mario1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51287382104A7CA00BF2689 /* mario1.jpg */; };
@@ -60,6 +65,10 @@
 		C750F9012104ADB700E9D250 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C750F9042104ADEA00E9D250 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C750F9082104B44E00E9D250 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		C750F90C21051C7000E9D250 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
+		C750F90E21051F8500E9D250 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		C750F91021052D6F00E9D250 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C750F91221052E6D00E9D250 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		D3EA2E10B8B84CE6FD0168A2 /* Pods-Movies2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movies2/Pods-Movies2.debug.xcconfig"; sourceTree = "<group>"; };
 		D51286FC2104A47300BF2689 /* Movies2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51286FF2104A47300BF2689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +87,7 @@
 		D51287302104A5FA00BF2689 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		D51287322104A70600BF2689 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+
 		D51287362104A7CA00BF2689 /* mario2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario2.png; sourceTree = "<group>"; };
 		D51287372104A7CA00BF2689 /* mario4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario4.png; sourceTree = "<group>"; };
 		D51287382104A7CA00BF2689 /* mario1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mario1.jpg; sourceTree = "<group>"; };
@@ -157,7 +167,10 @@
 			children = (
 				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
 				D51287012104A47300BF2689 /* ViewController.swift */,
+
 				D51AEE1B2105B26F00077A66 /* DetailViewController.swift */,
+				C750F90E21051F8500E9D250 /* SearchVC.swift */,
+
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -168,8 +181,25 @@
 				D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */,
 				D51287322104A70600BF2689 /* MovieTableViewCell.swift */,
 				C750F9082104B44E00E9D250 /* Movie.swift */,
+				C750F91021052D6F00E9D250 /* SearchTableViewCell.swift */,
+				C750F91221052E6D00E9D250 /* SearchData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C750F90A21051B6300E9D250 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C750F90B21051C1000E9D250 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C750F90C21051C7000E9D250 /* InsetTextField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D51286F32104A47200BF2689 = {
@@ -197,17 +227,15 @@
 		D51286FE2104A47300BF2689 /* Movies2 */ = {
 			isa = PBXGroup;
 			children = (
-				C750F9072104B41100E9D250 /* Model */,
-				C750F9062104B3DE00E9D250 /* Controllers */,
-				D51286FF2104A47300BF2689 /* AppDelegate.swift */,
 				C750F9002104ADB700E9D250 /* Utilities */,
+				C750F90A21051B6300E9D250 /* Extensions */,
 				C750F9032104ADEA00E9D250 /* Services */,
+				C750F9072104B41100E9D250 /* Model */,
+				C750F90B21051C1000E9D250 /* Views */,
+				C750F9062104B3DE00E9D250 /* Controllers */,
 				D51287032104A47300BF2689 /* Main.storyboard */,
 				D51287092104A47300BF2689 /* Assets.xcassets */,
-				D51287382104A7CA00BF2689 /* mario1.jpg */,
-				D51287362104A7CA00BF2689 /* mario2.png */,
-				D51287392104A7CB00BF2689 /* mario3.jpeg */,
-				D51287372104A7CA00BF2689 /* mario4.png */,
+				D51286FF2104A47300BF2689 /* AppDelegate.swift */,
 				D512870B2104A47300BF2689 /* LaunchScreen.storyboard */,
 				D512870E2104A47300BF2689 /* Info.plist */,
 				D51287062104A47300BF2689 /* Movies2.xcdatamodeld */,
@@ -345,12 +373,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D512870D2104A47300BF2689 /* LaunchScreen.storyboard in Resources */,
-				D512873B2104A7CB00BF2689 /* mario4.png in Resources */,
 				D512870A2104A47300BF2689 /* Assets.xcassets in Resources */,
 				D51287052104A47300BF2689 /* Main.storyboard in Resources */,
-				D512873C2104A7CB00BF2689 /* mario1.jpg in Resources */,
-				D512873D2104A7CB00BF2689 /* mario3.jpeg in Resources */,
-				D512873A2104A7CB00BF2689 /* mario2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,13 +479,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D51287332104A70600BF2689 /* MovieTableViewCell.swift in Sources */,
+				C750F90F21051F8500E9D250 /* SearchVC.swift in Sources */,
+				C750F90D21051C7000E9D250 /* InsetTextField.swift in Sources */,
 				D51287022104A47300BF2689 /* ViewController.swift in Sources */,
 				C750F9092104B44E00E9D250 /* Movie.swift in Sources */,
+				C750F91321052E6D00E9D250 /* SearchData.swift in Sources */,
 				D51287082104A47300BF2689 /* Movies2.xcdatamodeld in Sources */,
 				D51287352104A71400BF2689 /* MovieCollectionViewCell.swift in Sources */,
 				C750F9022104ADB700E9D250 /* Constants.swift in Sources */,
 				D51287002104A47300BF2689 /* AppDelegate.swift in Sources */,
 				D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */,
+
+				C750F91121052D6F00E9D250 /* SearchTableViewCell.swift in Sources */,
+
 				D51287312104A5FA00BF2689 /* FirstViewController.swift in Sources */,
 				C750F9052104ADEA00E9D250 /* DataService.swift in Sources */,
 			);
