@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class SearchTableViewCell: UITableViewCell {
 
@@ -15,11 +17,24 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     
-    func configureCell(searchData: SearchData){
-        movieImage.af_setImage(withURL: URL(string: searchData.movieImage!)!)
-        movieTitle.text = searchData.movieTitle
-        releaseLabel.text = searchData.releaseLabel
+    var movie: Movie!{
+        didSet{
+            //didset is an inbuilt method which will set the attributes to the imageview, label etc
+            
+            //Setting to movie attributes
+            movieImage.af_setImage(withURL: URL(string: movie.poster!)!)
+            movieTitle.text = movie.movieTitle!
+            releaseLabel.text = movie.releaseDate!
+            
+        }
     }
+    
+    //dont need it, see up how i will do
+//    func configureCell(searchData: SearchData){
+//        movieImage.af_setImage(withURL: URL(string: searchData.movieImage!)!)
+//        movieTitle.text = searchData.movieTitle
+//        releaseLabel.text = searchData.releaseLabel
+//    }
 
     
 }

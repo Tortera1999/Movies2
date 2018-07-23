@@ -115,7 +115,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.group.notify(queue: .main, execute: {
                 print("Finished request \(self.b)")
             })
-        }, genreID: gId)
+        }, genreID: gId, keyword: "")
         
         moviesTableView.reloadData()
         

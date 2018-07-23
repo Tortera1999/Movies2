@@ -21,8 +21,6 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
         tableView.dataSource  = self
         tableView.delegate = self
         
-       
-        
     }
     
     func addSpinner(){
@@ -45,16 +43,29 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     @IBAction func goBtnPressed(_ sender: Any) {
         addSpinner()
         
-        DataService.instance.getKeywordRelatedMovieData(text: textField.text!) { (success) in
+        DataService.instance.downloadDataBasedOnGenre(completion: { (success) in
             if(success){
-                self.removeSpinner()
-                print("\(DataService.instance.searches.count)")
-                self.tableView.reloadData()
+                    self.removeSpinner()
+                    print("\(DataService.instance.movies)")
+                    self.tableView.reloadData()
             }
             else{
-                self.removeSpinner()
+                    self.removeSpinner()
             }
-        }
+        }, genreID: -1, keyword: textField.text!)
+        
+        //see up
+        
+//        DataService.instance.getKeywordRelatedMovieData(text: textField.text!) { (success) in
+//            if(success){
+//                self.removeSpinner()
+//                print("\(DataService.instance.searches.count)")
+//                self.tableView.reloadData()
+//            }
+//            else{
+//                self.removeSpinner()
+//            }
+//        }
     }
     
    
@@ -63,13 +74,17 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     //TableView functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return DataService.instance.searches.count
+       //return DataService.instance.searches.count
+       return DataService.instance.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as? SearchTableViewCell{
-            let data = DataService.instance.searches[indexPath.row]
-            cell.configureCell(searchData: data)
+            //let data = DataService.instance.searches[indexPath.row]
+            //cell.configureCell(searchData: data)
+            
+            let data = DataService.instance.movies[indexPath.row]
+            cell.movie = data
             return cell
         }
         return UITableViewCell()
