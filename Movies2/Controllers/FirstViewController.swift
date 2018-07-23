@@ -2,6 +2,29 @@ import UIKit
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieTableCell") as! MovieTableViewCell
+        //cell.movieCollectionView.reloadData()
+        cell.movieCollectionView.layoutIfNeeded()
+        number = indexPath.section
+        return cell
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return genretitles.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return genretitles[section]
+    }
+    
     @IBOutlet weak var moviesTableView: UITableView!
     
     var movies: [Movie] = []
@@ -93,8 +116,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("Finished request \(self.b)")
             })
         }, genreID: gId)
-
-        }, genreID: THRILLER_ID)
         
         moviesTableView.reloadData()
         
@@ -109,30 +130,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func reloadTableView(_ notif: Notification){
         moviesTableView.reloadData()
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieTableCell") as! MovieTableViewCell
-        //cell.movieCollectionView.reloadData()
-        cell.movieCollectionView.layoutIfNeeded()
-        number = indexPath.section
-        return cell
-    }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 210
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return genretitles.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return genretitles[section]
     }
     
 }
