@@ -21,4 +21,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
             moviePosterPic.af_setImage(withURL: URL(string: movie.poster!)!)
         }
     }
+    
+    
 }
