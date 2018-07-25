@@ -9,6 +9,11 @@
 import UIKit
 import AlamofireImage
 import Alamofire
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+import SwiftyJSON
 
 class DetailViewController: UIViewController {
     

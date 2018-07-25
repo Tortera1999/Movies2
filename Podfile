@@ -13,6 +13,7 @@ target 'Movies2' do
     pod ‘Firebase/Database’
     pod ‘Firebase/Auth’
     pod ‘Firebase/Storage’
+    pod 'SwiftyUUID'
 
   # Pods for Movies2
 
