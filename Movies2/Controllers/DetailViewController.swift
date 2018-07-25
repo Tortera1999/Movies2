@@ -13,10 +13,9 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
-import SwiftyJSON
+import SwiftyUUID
 
 class DetailViewController: UIViewController {
-    
     
     
     @IBOutlet weak var backdropPic: UIImageView!
@@ -30,6 +29,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         backdropPic.af_setImage(withURL: URL(string: movie.poster!)!)
         titleLabel.text = movie.movieTitle!
         voterAvgLabel.text = String(movie.id!)
@@ -45,6 +46,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func didWatch(_ sender: Any) {
         
+        DataService.instance.writeToFirebase(movie: self.movie)
     }
     
     /*

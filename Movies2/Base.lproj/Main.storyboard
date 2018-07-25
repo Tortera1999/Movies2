@@ -354,6 +354,9 @@
                                 <rect key="frame" x="138" y="634" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Watched"/>
+                                <connections>
+                                    <action selector="didWatch:" destination="McG-dF-1VX" eventType="touchUpInside" id="QqX-45-aYY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

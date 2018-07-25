@@ -3,6 +3,11 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AlamofireImage
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+import SwiftyUUID
+
 
 class DataService{
     
@@ -12,6 +17,45 @@ class DataService{
     
     //commenting this as we dont need it
     //var searches: [SearchData] = []
+    
+    
+    func writeToFirebase(movie: Movie){
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        let ID = SwiftyUUID.UUID()
+        let idString = ID.CanonicalString()
+        
+        let values = ["movieTitle" : movie.movieTitle!, "id" : String(movie.id!), "voteAverage" : String(movie.voteAverage!), "overview" : movie.overview!, "releaseDate" : movie.releaseDate!, "poster" : movie.poster!, "firebaseId" : idString] as [String: Any]
+        
+        ref.child("Users").child((Auth.auth().currentUser?.uid)!).child(idString).setValue(values)
+        
+        print("Wrote to firebase correctly")
+    }
+    
+    func signInOrRegister(completion: @escaping CompletionHandler, email: String, password: String, signInOrNot : Bool){
+        if(signInOrNot){
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                if let error = error {
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            })
+        } else{
+            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                if let error = error {
+                    completion(false)
+                }
+                else{
+                    completion(true)
+                }
+            })
+        }
+    }
+    
+    
     
     
     //added one parameter here
@@ -71,6 +115,8 @@ class DataService{
             }
         }
     }
+    
+    
     
     
     
