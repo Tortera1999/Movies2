@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
 
@@ -26,35 +28,61 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signIn(_ sender: Any) {
-        self.performSegue(withIdentifier: "loginSegue", sender: self)
+        //self.performSegue(withIdentifier: "loginSegue", sender: self)
         
-//        if(emailTextField.text != "" && passwordTextField.text != "")
-//        {
-//            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-//                if let error = error {
-//                    let alertController = UIAlertController(title: "Error", message: "Could not sign in. Please make sure your email and password are correct", preferredStyle: .alert)
-//                    let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-//                    }
-//                    alertController.addAction(okAction)
-//                    self.present(alertController, animated: true, completion: nil)
-//                }
-//                else{
-//                    self.performSegue(withIdentifier: "loginSegue", sender: self)
-//                }
-//            })
-//        }
-//        else{
-//            let alertController = UIAlertController(title: "Error", message: "Please enter username or password", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-//
-//            }
-//            alertController.addAction(okAction)
-//            self.present(alertController, animated: true, completion: nil)
-//        }
+        if(emailTextField.text != "" && passwordTextField.text != "")
+        {
+            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+                if let error = error {
+                    let alertController = UIAlertController(title: "Error", message: "Could not sign in. Please make sure your email and password are correct", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                    }
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                else{
+                    self.performSegue(withIdentifier: "loginSegue", sender: self)
+                }
+            })
+        }
+        else{
+            let alertController = UIAlertController(title: "Error", message: "Please enter username or password", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
 
     }
     @IBAction func register(_ sender: Any) {
-        self.performSegue(withIdentifier: "registerSegue", sender: self)
+        if(emailTextField.text! == ""){
+            let alertController = UIAlertController(title: "Error", message: "Please enter an email address", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else if(passwordTextField.text! == ""){
+            let alertController = UIAlertController(title: "Error", message: "Please enter a password", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else{
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+                if let error = error{
+                    print(error)
+                    let alertController = UIAlertController(title: "Error", message: "Cannot register user", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                        
+                    }
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                } else{
+                    self.performSegue(withIdentifier: "loginSegue", sender: self)
+                }
+            })
+        }
     }
     
     /*

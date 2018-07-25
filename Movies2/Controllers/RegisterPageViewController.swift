@@ -31,7 +31,6 @@ class RegisterPageViewController: UIViewController {
     @IBAction func register(_ sender: Any) {
         self.performSegue(withIdentifier: "loginSegue", sender: self)
         
-        
         if(emailTextField.text! == ""){
             let alertController = UIAlertController(title: "Error", message: "Please enter an email address", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
