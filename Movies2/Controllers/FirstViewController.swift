@@ -9,7 +9,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieTableCell") as! MovieTableViewCell
-        //cell.movieCollectionView.reloadData()
         cell.movieCollectionView.layoutIfNeeded()
         number = indexPath.section
         return cell
@@ -21,11 +20,36 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return genretitles[section]
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+
+        let headerLabel = UILabel(frame: CGRect(x: 10, y: 2, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.textAlignment = .center
+        headerLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        headerLabel.textColor = UIColor.white
+        headerLabel.text = self.genretitles[section]
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        column = indexPath.row
+        print("\nthis is column ::\(column)\n")
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
     }
     
     @IBOutlet weak var moviesTableView: UITableView!
+    
+   
+    @IBOutlet weak var titleViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var movies: [Movie] = []
     
@@ -35,6 +59,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let group = DispatchGroup()
     
+    var column = 0
+    var row = 0
     var number = 0;
     
     var a = 0;
@@ -43,6 +69,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\n view did load\n")
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(FirstViewController.reloadTableView(_:)), name: Notification.Name("notifUserDataChanged"), object: nil)
@@ -54,14 +81,21 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         getAllMovies()
         
         
-        //self.moviesTableView.reloadData()
+      
         
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
+        print("\n view did appear \n")
+        getAllMovies()
         self.moviesTableView.reloadData()
+        
     }
+    
+    
     
     @objc func getAllMovies(){
         
@@ -94,9 +128,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if(success){
                 self.movies = DataService.instance.movies
                 self.allGenreMovies.append(self.movies)
-//                print(self.number)x
-                //self.number = self.number + 1
-//                print(self.allGenreMovies)
                 
                 self.genretitles.append(name)
                 print(self.genretitles)
@@ -136,13 +167,36 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 210
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (moviesTableView.contentOffset.y > 0)
+        {
+            titleViewHeightConstraint.constant = 0
+            titleLabel.text = ""
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        else
+        {
+            titleViewHeightConstraint.constant = 77
+            titleLabel.text = "MovieTracker"
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+    }
+    
+    
 }
 
 extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allGenreMovies[section].count
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionCell", for: indexPath) as! MovieCollectionViewCell
@@ -156,31 +210,24 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        row = indexPath.row
+//        let description = indexPath.description
+//        let index = description.index(description.startIndex, offsetBy: 1)
+//        let car = description[index]
+//        column = Int(String(car))!
         
+column = indexPath.section
+        print("\(column)")
+       
         self.performSegue(withIdentifier: "detailSegue", sender: self)
-//        print(indexPath.row)
-//        print(indexPath.section)
-//        print(indexPath.item)
-//        print(allGenreMovies[indexPath.section][indexPath.item].toString())
-//
-//        var a = 0
-//        var b = 0
-//        while(a < 5){
-//            print("Row")
-//            print(a)
-//            while(b < 5){
-//                print(allGenreMovies[a][b].toString())
-//                b = b + 1
-//            }
-//            a = a + 1
-//            b = 0
-//        }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "detailSegue"){
-            let vc = segue.destination as! DetailViewController
-            vc.movie = allGenreMovies[1][1]
+            if let vc = segue.destination as? DetailViewController{
+            vc.movie = allGenreMovies[column][row]
+            }
         }
     }
 }

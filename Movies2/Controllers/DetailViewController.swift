@@ -11,19 +11,21 @@ import AlamofireImage
 import Alamofire
 
 class DetailViewController: UIViewController {
+    
+    
+    
     @IBOutlet weak var backdropPic: UIImageView!
-    @IBOutlet weak var posterPic: UIImageView!
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var voterAvgLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
-    var movie: Movie!
+     var movie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backdropPic.af_setImage(withURL: URL(string: movie.poster!)!)
-        posterPic.af_setImage(withURL: URL(string: movie.poster!)!)
         titleLabel.text = movie.movieTitle!
         voterAvgLabel.text = String(movie.id!)
         releaseDateLabel.text = movie.releaseDate!
