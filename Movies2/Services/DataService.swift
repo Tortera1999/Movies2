@@ -3,11 +3,15 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AlamofireImage
+import Firebase
+
+let DB_BASE = Database.database().reference()
 
 class DataService{
     
     static let instance = DataService()
     
+    var REF_BASE = DB_BASE
     var movies: [Movie] = []
     
     //commenting this as we dont need it
@@ -126,6 +130,36 @@ class DataService{
 //        }
 //
 //    }
+    
+    func  getMovieList(handler: @escaping (_ movieArray: [Movie]) -> ()){
+        
+        var movieArray: [Movie] = []
+        
+        REF_BASE.child("Users").observe(.value) { (usersSnapshot) in
+            
+             guard let usersSnapshot = usersSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+            
+            for user in usersSnapshot{
+                if user.key == Auth.auth().currentUser?.uid{
+                    guard let innerSnapshot = user.children.allObjects as? [DataSnapshot] else { return }
+                    for item in innerSnapshot{
+                        let id = 0
+                        let movieTitle = item.childSnapshot(forPath: "movieTitle").value as! String
+                        let overview = item.childSnapshot(forPath: "overview").value as! String
+                        let poster = item.childSnapshot(forPath: "poster").value as! String
+                        let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
+                        let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
+                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
+                        movieArray.append(movie)
+                    }
+                }
+                    
+                
+            }
+            handler(movieArray)
+        }
+        
+    }
     
     
 }
