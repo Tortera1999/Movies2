@@ -22,17 +22,20 @@ class DataService{
     
     
     func writeToFirebase(movie: Movie){
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
         
         let ID = SwiftyUUID.UUID()
         let idString = ID.CanonicalString()
         
         let values = ["movieTitle" : movie.movieTitle!, "id" : String(movie.id!), "voteAverage" : String(movie.voteAverage!), "overview" : movie.overview!, "releaseDate" : movie.releaseDate!, "poster" : movie.poster!, "firebaseId" : idString] as [String: Any]
         
-        ref.child("Users").child((Auth.auth().currentUser?.uid)!).child(idString).setValue(values)
+        REF_BASE.child("Users").child((Auth.auth().currentUser?.uid)!).child("Watched").child(idString).setValue(values)
         
         print("Wrote to firebase correctly")
+    }
+    
+    func addFriends(email : String, uid : String){
+        let value = ["email" : email]
+        REF_BASE.child("Users").child((Auth.auth().currentUser?.uid)!).child("Friends").child(uid).setValue(value)
     }
     
     func signInOrRegister(completion: @escaping CompletionHandler, email: String, password: String, signInOrNot : Bool){
@@ -51,6 +54,8 @@ class DataService{
                     completion(false)
                 }
                 else{
+                    let val = ["email" : email, "uid" : (user?.uid)!]
+                Database.database().reference().child("Users").child((Auth.auth().currentUser?.uid)!).child("Info").setValue(val)
                     completion(true)
                 }
             })
@@ -175,18 +180,48 @@ class DataService{
 //
 //    }
     
+    func getEmails(handler: @escaping (_ emailArray: [String], _ uidArray: [String]) -> ()){
+        
+        print("Called this function here")
+        
+        var emailArray: [String] = []
+        var uidArray: [String] = []
+        
+        
+        REF_BASE.child("Users").observe(.value) { (usersSnapshot) in
+            
+            guard let usersSnapshot = usersSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+            
+            for user in usersSnapshot{
+                guard let innerSnapshot = user.childSnapshot(forPath: "Info").childSnapshot(forPath: "email").value as? String else {
+                    return
+                }
+                guard let innerSnapshot2 = user.childSnapshot(forPath: "Info").childSnapshot(forPath: "uid").value as? String else {
+                    return
+                }
+                emailArray.append(innerSnapshot)
+                uidArray.append(innerSnapshot2)
+            }
+            handler(emailArray,uidArray)
+            emailArray = []
+        }
+    }
+    
     func  getMovieList(handler: @escaping (_ movieArray: [Movie]) -> ()){
         
         var movieArray: [Movie] = []
         
         REF_BASE.child("Users").observe(.value) { (usersSnapshot) in
             
-             guard let usersSnapshot = usersSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+            guard let usersSnapshot = usersSnapshot.children.allObjects  as? [DataSnapshot] else { return }
             
             for user in usersSnapshot{
                 if user.key == Auth.auth().currentUser?.uid{
-                    guard let innerSnapshot = user.children.allObjects as? [DataSnapshot] else { return }
+                    
+                    guard let innerSnapshot = user.childSnapshot(forPath: "Watched").children.allObjects as? [DataSnapshot] else { return }
+                    print("Get movies snapshot:")
                     for item in innerSnapshot{
+                        print(item)
                         let id = 0
                         let movieTitle = item.childSnapshot(forPath: "movieTitle").value as! String
                         let overview = item.childSnapshot(forPath: "overview").value as! String
@@ -197,10 +232,9 @@ class DataService{
                         movieArray.append(movie)
                     }
                 }
-                    
-                
             }
             handler(movieArray)
+            movieArray = []
         }
         
     }
