@@ -32,57 +32,41 @@ class LoginViewController: UIViewController {
         
         if(emailTextField.text != "" && passwordTextField.text != "")
         {
-            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-                if let error = error {
-                    let alertController = UIAlertController(title: "Error", message: "Could not sign in. Please make sure your email and password are correct", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-                    }
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
+            DataService.instance.signInOrRegister(completion: { (data) in
+                if(data){
+                   self.performSegue(withIdentifier: "loginSegue", sender: self)
+                } else{
+                    self.alertcontrollerDisplay(message: "Could not sign in. Please make sure your email and password are correct")
                 }
-                else{
-                    self.performSegue(withIdentifier: "loginSegue", sender: self)
-                }
-            })
+            }, email: emailTextField.text!, password: passwordTextField.text!, signInOrNot: true)
         }
         else{
-            let alertController = UIAlertController(title: "Error", message: "Please enter username or password", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-
-            }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            self.alertcontrollerDisplay(message: "Please enter username or password")
         }
 
     }
     @IBAction func register(_ sender: Any) {
         if(emailTextField.text! == ""){
-            let alertController = UIAlertController(title: "Error", message: "Please enter an email address", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-            }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            self.alertcontrollerDisplay(message: "Please enter an email address")
         } else if(passwordTextField.text! == ""){
-            let alertController = UIAlertController(title: "Error", message: "Please enter a password", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-            }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            self.alertcontrollerDisplay(message: "Please enter a password")
         } else{
-            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-                if let error = error{
-                    print(error)
-                    let alertController = UIAlertController(title: "Error", message: "Cannot register user", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-                        
-                    }
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                } else{
+            DataService.instance.signInOrRegister(completion: { (data) in
+                if(data){
                     self.performSegue(withIdentifier: "loginSegue", sender: self)
+                } else{
+                    self.alertcontrollerDisplay(message: "Cannot register user")
                 }
-            })
+            }, email: emailTextField.text!, password: passwordTextField.text!, signInOrNot: false)
         }
+    }
+    
+    func alertcontrollerDisplay(message: String){
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     /*

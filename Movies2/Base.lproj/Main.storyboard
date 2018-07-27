@@ -406,6 +406,7 @@
                                     <constraint firstAttribute="height" constant="375" id="l2P-bK-WFE"/>
                                 </constraints>
                             </view>
+
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0j-Y0-Ry5">
                                 <rect key="frame" x="5" y="713" width="365" height="50"/>
                                 <color key="backgroundColor" red="0.12941176469999999" green="0.1333333333" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
