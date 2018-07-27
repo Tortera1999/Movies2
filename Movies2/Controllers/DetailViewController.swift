@@ -17,9 +17,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var backdropPic: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var voterAvgLabel: UILabel!
-    @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var overviewTextView: UITextView!
+    
     
      var movie: Movie!
     
@@ -27,10 +26,10 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         backdropPic.af_setImage(withURL: URL(string: movie.poster!)!)
         titleLabel.text = movie.movieTitle!
-        voterAvgLabel.text = String(movie.id!)
-        releaseDateLabel.text = movie.releaseDate!
-        overviewLabel.text = movie.overview!
-        // Do any additional setup after loading the view.
+       
+
+        overviewTextView.text = movie.overview! + " Voter's average give this movie a \(Int(movie.voteAverage!))/10!"
+       
     }
 
     override func didReceiveMemoryWarning() {
