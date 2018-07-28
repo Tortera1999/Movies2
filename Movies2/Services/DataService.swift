@@ -16,10 +16,21 @@ class DataService{
     
     var REF_BASE = DB_BASE
     var movies: [Movie] = []
+    var recommendArray: [String] = []
+    var chosenMovie: Movie?
     
-    //commenting this as we dont need it
-    //var searches: [SearchData] = []
-    
+    func writeRecommendationsToFirebase(recommendArray: [String], movie: Movie){
+        
+        let ID = SwiftyUUID.UUID()
+        let idString = ID.CanonicalString()
+        
+        let values = ["movieTitle" : movie.movieTitle!, "id" : String(movie.id!), "voteAverage" : String(movie.voteAverage!), "overview" : movie.overview!, "releaseDate" : movie.releaseDate!, "poster" : movie.poster!, "firebaseId" : idString, "GivenTo": recommendArray] as [String: Any]
+        
+        REF_BASE.child("Users").child((Auth.auth().currentUser?.uid)!).child("RecommendationsGiven").child(idString).setValue(values)
+        
+        
+        
+    }
     
     func writeToFirebase(movie: Movie){
         
@@ -65,7 +76,7 @@ class DataService{
     
     
     
-    //added one parameter here
+    
     func downloadDataBasedOnGenre(completion: @escaping CompletionHandler, genreID: Int, keyword: String){
         
         //creating url variable
@@ -123,66 +134,8 @@ class DataService{
         }
     }
     
-    
-    
-    
-    
-    
-    //Dont need this only
-    
-    
-//    func getKeywordRelatedMovieData(text: String, completion: @escaping CompletionHandler){
-//
-//
-//
-//        let textNew = text.replacingOccurrences(of: " ", with: "%20")
-//
-//        var url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=50670e9c1d4037bc568a8aa9969c14f4&query=\(textNew)&page=1&language=en&include_adult=true")
-//
-//
-//
-//        print(" \n URL: \(url)  \n text: \(textNew)")
-//
-//        Alamofire.request(url!).responseJSON { (response) in
-//            if(response.result.error == nil){
-//                guard let data = response.data else { return }
-//                do{
-//                    let json = try JSON(data: data)
-//
-//                    if let array = json["results"].array{
-//
-//                        self.searches = []
-//
-//                        for item in array{
-//                            let title = item["title"].stringValue
-//                            let releaseDate = item["release_date"].stringValue
-//                            let imgUrl = "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)"
-//
-//
-//                            let search = SearchData(movieImage: imgUrl, movieTitle: title, releaseLabel: releaseDate)
-//                            self.searches.append(search)
-//                            NotificationCenter.default.post(name: Notification.Name("SearchUpdated"), object: nil)
-//
-//
-//                        }
-//                    }
-//                }catch{
-//
-//                }
-//
-//                completion(true)
-//            }else{
-//                debugPrint(response.result.error)
-//                completion(false)
-//
-//            }
-//        }
-//
-//    }
-    
     func getEmails(handler: @escaping (_ emailArray: [String], _ uidArray: [String]) -> ()){
         
-        print("Called this function here")
         
         var emailArray: [String] = []
         var uidArray: [String] = []
@@ -219,7 +172,7 @@ class DataService{
                 if user.key == Auth.auth().currentUser?.uid{
                     
                     guard let innerSnapshot = user.childSnapshot(forPath: "Watched").children.allObjects as? [DataSnapshot] else { return }
-                    print("Get movies snapshot:")
+
                     for item in innerSnapshot{
                         print(item)
                         let id = 0
@@ -237,6 +190,29 @@ class DataService{
             movieArray = []
         }
         
+    }
+    
+    func getFriendsOfCurrUser(handler: @escaping (_ emailArray: [String]) -> ()){
+        
+        var emailArray: [String] = []
+        
+         REF_BASE.child("Users").observe(.value) { (usersSnapshot) in
+        
+            guard let usersSnapshot = usersSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+            
+            for user in usersSnapshot{
+                if user.key == Auth.auth().currentUser?.uid{
+                    guard let innerSnapshot = user.childSnapshot(forPath: "Friends").children.allObjects as? [DataSnapshot] else { return }
+                    
+                    for item in innerSnapshot{
+                        emailArray.append(item.childSnapshot(forPath: "email").value as! String)
+                    }
+
+                }
+            }
+            
+            handler(emailArray)
+    }
     }
     
     

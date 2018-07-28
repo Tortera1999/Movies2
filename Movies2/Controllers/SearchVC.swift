@@ -21,6 +21,8 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
         tableView.dataSource  = self
         tableView.delegate = self
         
+        textField.addTarget(self, action: #selector(goBtnPressed), for: .editingChanged)
+        
     }
     
     func addSpinner(){
@@ -40,7 +42,7 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     }
     
     
-    @IBAction func goBtnPressed(_ sender: Any) {
+    @objc func goBtnPressed() {
         addSpinner()
         
         DataService.instance.downloadDataBasedOnGenre(completion: { (success) in
@@ -49,23 +51,9 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
                     print("\(DataService.instance.movies)")
                     self.tableView.reloadData()
             }
-            else{
-                    self.removeSpinner()
-            }
         }, genreID: -1, keyword: textField.text!)
         
-        //see up
-        
-//        DataService.instance.getKeywordRelatedMovieData(text: textField.text!) { (success) in
-//            if(success){
-//                self.removeSpinner()
-//                print("\(DataService.instance.searches.count)")
-//                self.tableView.reloadData()
-//            }
-//            else{
-//                self.removeSpinner()
-//            }
-//        }
+       self.removeSpinner()
     }
     
    
@@ -80,9 +68,6 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as? SearchTableViewCell{
-            //let data = DataService.instance.searches[indexPath.row]
-            //cell.configureCell(searchData: data)
-            
             let data = DataService.instance.movies[indexPath.row]
             cell.movie = data
             return cell

@@ -15,8 +15,9 @@ import SwiftyUUID
 import AlamofireImage
 import Alamofire
 
-class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-   
+
+class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+    
     //Outlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -120,6 +121,8 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
     }
     
+    
+    
     //TableView functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,12 +132,26 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = myListTableView.dequeueReusableCell(withIdentifier: "ListCell") as? ListCell{
             cell.configureCell(movieImageUrl: moviesArray[indexPath.row].poster!, movieTitle: moviesArray[indexPath.row].movieTitle!, releaseDate: moviesArray[indexPath.row].releaseDate!)
+            
             return cell
         }
         return ListCell()
     }
     
-
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let recommend = UITableViewRowAction(style: .normal, title: "Recommend") { action, index in
+            DataService.instance.chosenMovie = self.moviesArray[indexPath.row]
+           let  popvc = self.storyboard?.instantiateViewController(withIdentifier: "PopOverReccVC")
+            self.present(popvc!, animated: true, completion: nil)
+                    }
+        recommend.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.168627451, blue: 0.1960784314, alpha: 1)
+        
+    
+        
+        return [recommend]
+    }
+    
+   
 
   
 
