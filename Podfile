@@ -14,7 +14,7 @@ target 'Movies2' do
     pod ‘Firebase/Auth’
     pod ‘Firebase/Storage’
     pod 'SwiftyUUID'
-
+   pod 'PopupDialog'
   # Pods for Movies2
 
   target 'Movies2Tests' do

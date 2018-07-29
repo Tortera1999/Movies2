@@ -11,6 +11,7 @@ import UIKit
 class AddFriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var emailLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
