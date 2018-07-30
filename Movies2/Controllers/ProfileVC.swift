@@ -49,7 +49,6 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         if let photoUrl = Auth.auth().currentUser?.photoURL {
             profileImage.af_setImage(withURL: photoUrl)
         }
-        
        
     }
     
@@ -141,6 +140,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let recommend = UITableViewRowAction(style: .normal, title: "Recommend") { action, index in
             DataService.instance.chosenMovie = self.moviesArray[indexPath.row]
+            
            let  popvc = self.storyboard?.instantiateViewController(withIdentifier: "PopOverReccVC")
             self.present(popvc!, animated: true, completion: nil)
                     }

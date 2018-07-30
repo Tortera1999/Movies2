@@ -17,6 +17,7 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
    
     
     var friendsArray: [String] = []
+    var friendsArrayUID: [String] = []
     
     
     override func viewDidLoad() {
@@ -25,21 +26,22 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
        tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.instance.getFriendsOfCurrUser { (returnedArray) in
+        DataService.instance.getFriendsOfCurrUser { (returnedArray, returnedArrayUID) in
             self.friendsArray = returnedArray
+            self.friendsArrayUID = returnedArrayUID
             DataService.instance.recommendArray = self.friendsArray
+            DataService.instance.recommendArrayUID = self.friendsArrayUID
             self.tableView.reloadData()
         }
-       
     }
 
     func addTap(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapOnView))
         tap.delegate = self
         viewOut.addGestureRecognizer(tap)
-    
+
     }
-    
+
     @objc func tapOnView(){
         self.friendsArray = []
         dismiss(animated: true, completion: nil)
@@ -68,6 +70,29 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = tableView.cellForRow(at: indexPath) as! PopOverReccCell
+        if(!currentCell.hide){
+            if(!DataService.instance.recommendArray.contains(friendsArray[indexPath.row])){
+                DataService.instance.recommendArray.append(friendsArray[indexPath.row])
+                DataService.instance.recommendArrayUID.append(friendsArrayUID[indexPath.row])
+            }
+        } else{
+            var count = 0
+            for item in DataService.instance.recommendArray{
+                if(item == friendsArray[indexPath.row]){
+                    DataService.instance.recommendArray.remove(at: count)
+                    DataService.instance.recommendArrayUID.remove(at: count)
+                }
+                count += 1
+            }
+        }
+        
+        print(DataService.instance.recommendArray)
+        print(DataService.instance.recommendArrayUID)
+        
     }
     
    

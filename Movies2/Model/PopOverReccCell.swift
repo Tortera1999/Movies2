@@ -33,23 +33,23 @@ class PopOverReccCell: UITableViewCell {
             if(hide){
                 hide = false
                 checkImage.isHidden = false
-                if(!DataService.instance.recommendArray.contains(emailLabel.text!)){
-                DataService.instance.recommendArray.append(emailLabel.text!)
-                }
+//                if(!DataService.instance.recommendArray.contains(emailLabel.text!)){
+//                    DataService.instance.recommendArray.append(emailLabel.text!)
+//                }
             }
             else{
                 hide = true
                 checkImage.isHidden = true
-                var count = 0
-                for item in DataService.instance.recommendArray{
-                    if(item == emailLabel.text!){
-                        DataService.instance.recommendArray.remove(at: count)
-                    }
-                    count += 1
-                }
+//                var count = 0
+//                for item in DataService.instance.recommendArray{
+//                    if(item == emailLabel.text!){
+//                        DataService.instance.recommendArray.remove(at: count)
+//                    }
+//                    count += 1
+//                }
                
             }
-            print(DataService.instance.recommendArray)
+            //print(DataService.instance.recommendArray)
         }
 
       

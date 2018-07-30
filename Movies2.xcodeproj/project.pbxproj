@@ -38,6 +38,8 @@
 		D516B047210B402500E2ED84 /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D516B046210B402500E2ED84 /* AddFriendTableViewCell.swift */; };
 		D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1B2105B26F00077A66 /* DetailViewController.swift */; };
 		D51AEE1E21063FA100077A66 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1D21063FA100077A66 /* LoginViewController.swift */; };
+		D544C260210D9A2400B739B1 /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */; };
+		D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */; };
 		D5D6C3DE21089C8500BA5740 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */; };
 		D5D6C3E021089DBD00BA5740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5D6C3DF21089DBD00BA5740 /* GoogleService-Info.plist */; };
 		DEBBB10956FC94A708E3DED3 /* Pods_Movies2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C6C9C3FFAF7CE7EACE185C /* Pods_Movies2Tests.framework */; };
@@ -105,6 +107,8 @@
 		D516B046210B402500E2ED84 /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
 		D51AEE1B2105B26F00077A66 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D51AEE1D21063FA100077A66 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
+		D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D5D6C3DF21089DBD00BA5740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +185,7 @@
 			children = (
 				D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */,
 				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
+				D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */,
 				D51287012104A47300BF2689 /* ViewController.swift */,
 				D51AEE1B2105B26F00077A66 /* DetailViewController.swift */,
 				C750F90E21051F8500E9D250 /* SearchVC.swift */,
@@ -204,6 +209,7 @@
 				D516B046210B402500E2ED84 /* AddFriendTableViewCell.swift */,
 				C7FD80DA210C93BB00317222 /* MyFriendsCell.swift */,
 				C7D7B9DF210D07C700B542B3 /* PopOverReccCell.swift */,
+				D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -521,6 +527,7 @@
 				C750F90F21051F8500E9D250 /* SearchVC.swift in Sources */,
 				C750F90D21051C7000E9D250 /* InsetTextField.swift in Sources */,
 				C7A63B52210AFDDD000ED2DF /* ProfileVC.swift in Sources */,
+				D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */,
 				D51AEE1E21063FA100077A66 /* LoginViewController.swift in Sources */,
 				D51287022104A47300BF2689 /* ViewController.swift in Sources */,
 				C7D7B9E1210D07C700B542B3 /* PopOverReccCell.swift in Sources */,
@@ -542,6 +549,7 @@
 				D51287312104A5FA00BF2689 /* FirstViewController.swift in Sources */,
 				C7FD80DB210C93BB00317222 /* MyFriendsCell.swift in Sources */,
 				C750F9052104ADEA00E9D250 /* DataService.swift in Sources */,
+				D544C260210D9A2400B739B1 /* RecommendationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

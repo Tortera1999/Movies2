@@ -37,7 +37,7 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
             self.listOfFriends = returnedFriendsArray
             self.listOfFriendsUID = returnedUIDArray
         }
-        DataService.instance.getFriendsOfCurrUser { (returnedArray) in
+        DataService.instance.getFriendsOfCurrUser { (returnedArray, returnedArrayUID) in
             self.friendsArray = returnedArray
             self.myFriendsTableView.reloadData()
         }
@@ -50,7 +50,7 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
             self.listOfFriends = returnedFriendsArray
             self.listOfFriendsUID = returnedUIDArray
         }
-        DataService.instance.getFriendsOfCurrUser { (returnedArray) in
+        DataService.instance.getFriendsOfCurrUser { (returnedArray, returnedArrayUID) in
             self.friendsArray = returnedArray
             self.myFriendsTableView.reloadData()
     
@@ -110,7 +110,7 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(tableView == self.listOfFriendsTB){
         DataService.instance.addFriends(email: editedListOfFriends[indexPath.row], uid: editedListOfFriendsUID[indexPath.row])
-            DataService.instance.getFriendsOfCurrUser { (returnedArray) in
+            DataService.instance.getFriendsOfCurrUser { (returnedArray, returnedArrayUID) in
                 self.friendsArray = returnedArray
                 self.myFriendsTableView.reloadData()
             }
