@@ -22,14 +22,32 @@ class RecommendationsViewController: UIViewController, UITableViewDelegate, UITa
         recommendedMoviesTB.delegate = self
         recommendedMoviesTB.dataSource = self
 
-        DataService.instance.getRecommendationsGivenOfTheUser { (returnedArray) in
+        DataService.instance.getRecommendationsGivenToTheUser { (returnedArray) in
             self.recommendedMovies = returnedArray
             self.recommendedMoviesTB.reloadData()
         }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+  
+    @IBAction func segmentControlChanged(_ sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 0){
+            DataService.instance.getRecommendationsGivenToTheUser { (returnedArray) in
+                self.recommendedMovies = returnedArray
+                self.recommendedMoviesTB.reloadData()
+            }
+        }
+        else{
+            DataService.instance.getRecommendationsGivenByUser { (returnedArray) in
+                self.recommendedMovies = returnedArray
+                self.recommendedMoviesTB.reloadData()
+            }
+        }
+        
     }
     
     //TableView functions
@@ -44,9 +62,6 @@ class RecommendationsViewController: UIViewController, UITableViewDelegate, UITa
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
     
 
   
