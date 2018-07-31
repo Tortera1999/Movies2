@@ -25,18 +25,41 @@ class DataService{
         let ID = SwiftyUUID.UUID()
         let idString = ID.CanonicalString()
         
-        
-        
-//        REF_BASE.child("Users").child((Auth.auth().currentUser?.uid)!).child("RecommendationsGiven").child(idString).setValue(values)
-        
         for item in recommendArrayUID{
-            let index = recommendArrayUID.index(of: item)
-            let givenBY = recommendArray[index!]
-            let values = ["movieTitle" : movie.movieTitle!, "id" : String(movie.id!), "voteAverage" : String(movie.voteAverage!), "overview" : movie.overview!, "releaseDate" : movie.releaseDate!, "poster" : movie.poster!, "firebaseId" : idString, "GivenBy": givenBY] as [String: Any]
-            REF_BASE.child("Users").child(item).child("Recommendations").child(idString).setValue(values)
+           
+            var givenBY: String?
+            
+            convertUIDtoEmail(uid: (Auth.auth().currentUser?.uid)!) { (result) in
+                
+                givenBY = result
+                
+                let values = ["movieTitle" : movie.movieTitle!, "id" : String(movie.id!), "voteAverage" : String(movie.voteAverage!), "overview" : movie.overview!, "releaseDate" : movie.releaseDate!, "poster" : movie.poster!, "firebaseId" : idString, "GivenBy": givenBY!] as [String: Any]
+                self.REF_BASE.child("Users").child(item).child("Recommendations").child(idString).setValue(values)
+            }
+           
         }
         
         
+    }
+    
+    func convertUIDtoEmail(uid: String, handler: @escaping (_ email: String)->()){
+        
+        REF_BASE.child("Users").observe(.value) { (userSnapshot) in
+            
+             guard let userSnapshot = userSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+            
+            for user in userSnapshot{
+                if user.key == uid{
+                    
+                    guard let innerSnapshot = user.childSnapshot(forPath: "Info").childSnapshot(forPath: "email").value as? String else {
+                        return
+                    }
+                    
+                    handler(innerSnapshot)
+                    
+                }
+            }
+        }
     }
     
     func writeToFirebase(movie: Movie){
@@ -195,7 +218,6 @@ class DataService{
                     
                     guard let innerSnapshot = user.childSnapshot(forPath: "Recommendations").children.allObjects as? [DataSnapshot] else { return }
                     
-                    print("The snapshot:")
                     print(innerSnapshot)
                     
                     for item in innerSnapshot{
@@ -206,7 +228,6 @@ class DataService{
                         let overview = item.childSnapshot(forPath: "overview").value as! String
                         let poster = item.childSnapshot(forPath: "poster").value as! String
                         let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
-                        //let correctReleaseDate = (releaseDate.toDateString(inputFormat: "yyyy-MM-dd", outputFormat: "dd MMMM yyyy")!)
                         let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
                         let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
                         movieArray.append(movie)
@@ -241,7 +262,7 @@ class DataService{
                         let overview = item.childSnapshot(forPath: "overview").value as! String
                         let poster = item.childSnapshot(forPath: "poster").value as! String
                         let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
-                        //let correctReleaseDate = (releaseDate.toDateString(inputFormat: "yyyy-MM-dd", outputFormat: "dd MMMM yyyy")!)
+                       
                         let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
                         let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
                         movieArray.append(movie)
