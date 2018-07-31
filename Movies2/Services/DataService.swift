@@ -297,7 +297,7 @@ class DataService{
             }
             
             handler(emailArray, emailArrayUID)
-    }
+        }
     }
     
     
