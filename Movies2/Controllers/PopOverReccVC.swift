@@ -62,7 +62,7 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PopOverReccCell") as? PopOverReccCell{
-            cell.cellConfigure(email: friendsArray[indexPath.row])
+            cell.cellConfigure(email: friendsArray[indexPath.row],isSelected: false)
             return cell
         }
         return PopOverReccCell()

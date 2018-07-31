@@ -22,8 +22,6 @@ class PopOverReccCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,30 +31,27 @@ class PopOverReccCell: UITableViewCell {
             if(hide){
                 hide = false
                 checkImage.isHidden = false
-//                if(!DataService.instance.recommendArray.contains(emailLabel.text!)){
-//                    DataService.instance.recommendArray.append(emailLabel.text!)
-//                }
             }
             else{
                 hide = true
                 checkImage.isHidden = true
-//                var count = 0
-//                for item in DataService.instance.recommendArray{
-//                    if(item == emailLabel.text!){
-//                        DataService.instance.recommendArray.remove(at: count)
-//                    }
-//                    count += 1
-//                }
                
             }
-            //print(DataService.instance.recommendArray)
+            
         }
 
       
     }
     
-    func cellConfigure(email: String){
+    func cellConfigure(email: String, isSelected: Bool){
+        
         self.emailLabel.text = email
+        
+        if(isSelected){
+            checkImage.isHidden = false
+        } else{
+            checkImage.isHidden = true
+        }
     }
     
 }

@@ -90,7 +90,6 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
         return editedListOfFriends.count
         }
         else{
-             print("in numberofrows")
             return friendsArray.count
         }
     }
