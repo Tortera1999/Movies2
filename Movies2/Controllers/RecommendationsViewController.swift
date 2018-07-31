@@ -11,9 +11,10 @@ import UIKit
 class RecommendationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     //Outlets
- 
     @IBOutlet weak var recommendedMoviesTB: UITableView!
     
+    //Variables
+    var prefix: String = "by "
     var recommendedMovies : [Movie] = []
     
     override func viewDidLoad() {
@@ -38,12 +39,15 @@ class RecommendationsViewController: UIViewController, UITableViewDelegate, UITa
         if(sender.selectedSegmentIndex == 0){
             DataService.instance.getRecommendationsGivenToTheUser { (returnedArray) in
                 self.recommendedMovies = returnedArray
+                self.prefix = "by "
                 self.recommendedMoviesTB.reloadData()
+                
             }
         }
         else{
             DataService.instance.getRecommendationsGivenByUser { (returnedArray) in
                 self.recommendedMovies = returnedArray
+                self.prefix = "to "
                 self.recommendedMoviesTB.reloadData()
             }
         }
@@ -58,6 +62,7 @@ class RecommendationsViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recTBC", for: indexPath) as! RecommendedMoviesTableViewCell
+        cell.configureCell(prefix: prefix)
         cell.movie = recommendedMovies[indexPath.row]
         return cell
     }

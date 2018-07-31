@@ -152,7 +152,7 @@ class DataService{
                             let imgUrl = "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)"
                             
                             
-                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: correctReleaseDate, poster: imgUrl)
+                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: correctReleaseDate, poster: imgUrl, user: nil)
                             self.movies.append(movie)
                             NotificationCenter.default.post(name: Notification.Name("notifUserDataChanged"), object: nil)
                             
@@ -220,7 +220,6 @@ class DataService{
                     
                     guard let innerSnapshot = user.childSnapshot(forPath: "Recommendations").children.allObjects as? [DataSnapshot] else { return }
                     
-                    print(innerSnapshot)
                     
                     for item in innerSnapshot{
                        
@@ -230,7 +229,7 @@ class DataService{
                         let poster = item.childSnapshot(forPath: "poster").value as! String
                         let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
                         let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
-                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
+                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster, user: (item.childSnapshot(forPath: "GivenBy").value as! String))
                         movieArray.append(movie)
                     }
                 }
@@ -264,14 +263,20 @@ class DataService{
                             let poster = item.childSnapshot(forPath: "poster").value as! String
                             let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
                             let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
-                            let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
-                            movieArray.append(movie)
+                            
+                                let user12 = user.childSnapshot(forPath: "Info").childSnapshot(forPath: "email").value as? String
+                                let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster, user: user12!)
+                                movieArray.append(movie)
+                            
+                            
                         }
                     }
                 }
             }
             
+            print("\n\n \(movieArray) \nin the dataService\n ")
             handler(movieArray)
+            
             movieArray = []
         
     }
@@ -299,7 +304,7 @@ class DataService{
                         let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
                        
                         let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
-                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
+                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster, user: nil)
                         movieArray.append(movie)
                     }
                 }

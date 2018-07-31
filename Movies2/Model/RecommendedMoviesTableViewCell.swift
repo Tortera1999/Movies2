@@ -11,18 +11,28 @@ import Alamofire
 import AlamofireImage
 
 class RecommendedMoviesTableViewCell: UITableViewCell {
+    
+    //Outlets
     @IBOutlet weak var posterPic: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var recommendationName: UILabel!
+    
+    //Variables
+    var prefix: String = ""
     
     
     var movie: Movie!{
         didSet{
             posterPic.af_setImage(withURL: URL(string: movie.poster!)!)
             titleLabel.text = movie.movieTitle!
-            recommendationName.text = movie.releaseDate!
+            recommendationName.text = prefix + movie.user!
         }
     }
+    
+    func configureCell(prefix: String){
+        self.prefix = prefix
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
