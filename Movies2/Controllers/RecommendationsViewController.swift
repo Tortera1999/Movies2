@@ -11,7 +11,7 @@ import UIKit
 class RecommendationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     //Outlets
-    @IBOutlet weak var titleLabel: UILabel!
+ 
     @IBOutlet weak var recommendedMoviesTB: UITableView!
     
     var recommendedMovies : [Movie] = []

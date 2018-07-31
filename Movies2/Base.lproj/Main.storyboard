@@ -113,15 +113,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e66-DI-vU9">
-                                <rect key="frame" x="0.0" y="135.66666666666669" width="375" height="676.33333333333326"/>
-                                <color key="backgroundColor" red="0.10588235294117647" green="0.10980392156862745" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommendations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4a-G1-pp7">
+                                <rect key="frame" x="19.999999999999986" y="49" width="250.66666666666663" height="39.666666666666657"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="29"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-01-6hI">
+                                <rect key="frame" x="29.666666666666657" y="95.666666666666671" width="316" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="316" id="sKU-4P-PTl"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Recieved"/>
+                                    <segment title="Given"/>
+                                </segments>
+                                <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e66-DI-vU9">
+                                <rect key="frame" x="5" y="135.66666666666669" width="365" height="588.33333333333326"/>
+                                <color key="backgroundColor" red="0.12549019607843137" green="0.12941176470588237" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recTBC" rowHeight="100" id="4IU-be-Z1Q" customClass="RecommendedMoviesTableViewCell" customModule="Movies2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="365" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4IU-be-Z1Q" id="4j7-Ai-B9q">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="365" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vta-ms-Bg1">
@@ -158,43 +175,26 @@
                                                 <constraint firstItem="u7T-go-AA3" firstAttribute="top" secondItem="vta-ms-Bg1" secondAttribute="top" id="u5B-pJ-hLQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="posterPic" destination="vta-ms-Bg1" id="TPt-Gz-A4m"/>
-                                            <outlet property="releaseDateLabel" destination="HDc-iT-4LA" id="CMa-lr-qJb"/>
+                                            <outlet property="recommendationName" destination="HDc-iT-4LA" id="kZ1-y6-baT"/>
                                             <outlet property="titleLabel" destination="u7T-go-AA3" id="bVz-sc-nic"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommendations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4a-G1-pp7">
-                                <rect key="frame" x="19.999999999999986" y="49" width="250.66666666666663" height="39.666666666666657"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="29"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-01-6hI">
-                                <rect key="frame" x="29.666666666666657" y="95.666666666666671" width="316" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="316" id="sKU-4P-PTl"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Recieved"/>
-                                    <segment title="Given"/>
-                                </segments>
-                                <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431372549021" green="0.16862745098039217" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="e66-DI-vU9" firstAttribute="top" secondItem="gFy-01-6hI" secondAttribute="bottom" constant="12" id="9fi-sl-cnq"/>
-                            <constraint firstItem="e66-DI-vU9" firstAttribute="trailing" secondItem="QfB-Vt-0NQ" secondAttribute="trailing" id="9sz-qD-4uS"/>
+                            <constraint firstItem="QfB-Vt-0NQ" firstAttribute="trailing" secondItem="e66-DI-vU9" secondAttribute="trailing" constant="5" id="0Sm-2D-u5T"/>
                             <constraint firstItem="I4a-G1-pp7" firstAttribute="top" secondItem="QfB-Vt-0NQ" secondAttribute="top" constant="5" id="Ets-Ww-5AB"/>
-                            <constraint firstAttribute="bottom" secondItem="e66-DI-vU9" secondAttribute="bottom" id="V8S-49-8s9"/>
+                            <constraint firstItem="e66-DI-vU9" firstAttribute="leading" secondItem="QfB-Vt-0NQ" secondAttribute="leading" constant="5" id="bEd-0Q-nWQ"/>
                             <constraint firstItem="gFy-01-6hI" firstAttribute="top" secondItem="I4a-G1-pp7" secondAttribute="bottom" constant="7" id="cjp-wg-hRt"/>
                             <constraint firstItem="I4a-G1-pp7" firstAttribute="leading" secondItem="QfB-Vt-0NQ" secondAttribute="leading" constant="20" id="fO5-SW-W08"/>
+                            <constraint firstItem="e66-DI-vU9" firstAttribute="top" secondItem="gFy-01-6hI" secondAttribute="bottom" constant="12" id="lQv-DN-IX5"/>
                             <constraint firstItem="gFy-01-6hI" firstAttribute="centerX" secondItem="FMf-Wm-pJb" secondAttribute="centerX" id="lfs-Pu-mRB"/>
-                            <constraint firstItem="e66-DI-vU9" firstAttribute="leading" secondItem="QfB-Vt-0NQ" secondAttribute="leading" id="uhJ-FD-deY"/>
+                            <constraint firstItem="QfB-Vt-0NQ" firstAttribute="bottom" secondItem="e66-DI-vU9" secondAttribute="bottom" constant="5" id="wHk-zU-NIu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QfB-Vt-0NQ"/>
                     </view>
@@ -394,7 +394,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Gn-qp-Snb">
-                                <rect key="frame" x="5" y="492" width="365" height="266"/>
+                                <rect key="frame" x="5" y="492" width="365" height="232"/>
                                 <color key="backgroundColor" red="0.10588235294117647" green="0.10980392156862745" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="100" id="sTE-kG-PlX" customClass="ListCell" customModule="Movies2" customModuleProvider="target">
@@ -449,15 +449,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KT1-H9-7sM">
-                                <rect key="frame" x="293" y="93" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.20169244797332997" blue="0.16683582780016293" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Edit"/>
-                                <connections>
-                                    <action selector="editProfile:" destination="QcJ-Tw-tW3" eventType="touchUpInside" id="dxF-YO-QU6"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431372549021" green="0.16862745098039217" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

@@ -13,14 +13,14 @@ import AlamofireImage
 class RecommendedMoviesTableViewCell: UITableViewCell {
     @IBOutlet weak var posterPic: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var recommendedBy: UILabel!
+    @IBOutlet weak var recommendationName: UILabel!
+    
     
     var movie: Movie!{
         didSet{
             posterPic.af_setImage(withURL: URL(string: movie.poster!)!)
             titleLabel.text = movie.movieTitle!
-            releaseDateLabel.text = movie.releaseDate!
+            recommendationName.text = movie.releaseDate!
         }
     }
     override func awakeFromNib() {
