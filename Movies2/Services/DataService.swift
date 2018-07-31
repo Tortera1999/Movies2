@@ -8,6 +8,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import SwiftyUUID
 import Firebase
+
 let DB_BASE = Database.database().reference()
 
 class DataService{
