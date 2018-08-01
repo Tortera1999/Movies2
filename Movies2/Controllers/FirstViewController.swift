@@ -49,6 +49,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchHeightConstraint: NSLayoutConstraint!
     
     var movies: [Movie] = []
     
@@ -166,6 +167,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         {
             titleViewHeightConstraint.constant = 0
             titleLabel.text = ""
+            searchHeightConstraint.constant = 0
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
@@ -173,6 +175,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else
         {
             titleViewHeightConstraint.constant = 40
+            searchHeightConstraint.constant = 45
             titleLabel.text = "Movies"
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
