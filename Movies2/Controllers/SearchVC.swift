@@ -15,8 +15,11 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     @IBOutlet weak var tableView: UITableView!
     var spinner: UIActivityIndicatorView?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
         textField.delegate = self
         tableView.dataSource  = self
         tableView.delegate = self
@@ -24,6 +27,8 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
         textField.addTarget(self, action: #selector(goBtnPressed), for: .editingChanged)
         
     }
+    
+    
     
     func addSpinner(){
         spinner = UIActivityIndicatorView()

@@ -16,14 +16,16 @@ class Movie{
     var overview: String?
     var releaseDate: String?
     var poster: String?
+    var user: String?
     
-    init(movieTitle: String, id: Int, voteAverage: Double, overview: String, releaseDate: String, poster: String){
+    init(movieTitle: String, id: Int, voteAverage: Double, overview: String, releaseDate: String, poster: String, user: String?){
         self.movieTitle = movieTitle
         self.id = id
         self.voteAverage = voteAverage
         self.overview = overview
         self.releaseDate = releaseDate
         self.poster = poster
+        self.user = user
     }
     
     func toString(){

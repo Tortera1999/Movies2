@@ -11,9 +11,10 @@ import UIKit
 class RecommendationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     //Outlets
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var recommendedMoviesTB: UITableView!
     
+    //Variables
+    var prefix: String = "by "
     var recommendedMovies : [Movie] = []
     
     override func viewDidLoad() {
@@ -22,14 +23,35 @@ class RecommendationsViewController: UIViewController, UITableViewDelegate, UITa
         recommendedMoviesTB.delegate = self
         recommendedMoviesTB.dataSource = self
 
-        DataService.instance.getRecommendationsGivenOfTheUser { (returnedArray) in
+        DataService.instance.getRecommendationsGivenToTheUser { (returnedArray) in
             self.recommendedMovies = returnedArray
             self.recommendedMoviesTB.reloadData()
         }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+  
+    @IBAction func segmentControlChanged(_ sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 0){
+            DataService.instance.getRecommendationsGivenToTheUser { (returnedArray) in
+                self.recommendedMovies = returnedArray
+                self.prefix = "by "
+                self.recommendedMoviesTB.reloadData()
+                
+            }
+        }
+        else{
+            DataService.instance.getRecommendationsGivenByUser { (returnedArray) in
+                self.recommendedMovies = returnedArray
+                self.prefix = "to "
+                self.recommendedMoviesTB.reloadData()
+            }
+        }
+        
     }
     
     //TableView functions
@@ -40,13 +62,11 @@ class RecommendationsViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recTBC", for: indexPath) as! RecommendedMoviesTableViewCell
+        cell.configureCell(prefix: prefix)
         cell.movie = recommendedMovies[indexPath.row]
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
     
 
   

@@ -10,11 +10,14 @@ import UIKit
 
 class AddFriendTableViewCell: UITableViewCell {
 
+    //Outlets
     @IBOutlet weak var emailLabel: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,5 +25,6 @@ class AddFriendTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+  
 }

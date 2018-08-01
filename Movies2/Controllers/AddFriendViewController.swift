@@ -90,7 +90,6 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
         return editedListOfFriends.count
         }
         else{
-             print("in numberofrows")
             return friendsArray.count
         }
     }
@@ -113,6 +112,8 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
             DataService.instance.getFriendsOfCurrUser { (returnedArray, returnedArrayUID) in
                 self.friendsArray = returnedArray
                 self.myFriendsTableView.reloadData()
+                self.emailTextField.text = ""
+                self.searchFriends()
             }
         }else{
             

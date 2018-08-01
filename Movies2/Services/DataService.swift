@@ -8,6 +8,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import SwiftyUUID
 import Firebase
+
 let DB_BASE = Database.database().reference()
 
 class DataService{
@@ -151,7 +152,7 @@ class DataService{
                             let imgUrl = "https://image.tmdb.org/t/p/w500\(item["poster_path"].stringValue)"
                             
                             
-                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: correctReleaseDate, poster: imgUrl)
+                            let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: correctReleaseDate, poster: imgUrl, user: nil)
                             self.movies.append(movie)
                             NotificationCenter.default.post(name: Notification.Name("notifUserDataChanged"), object: nil)
                             
@@ -206,7 +207,8 @@ class DataService{
         }
     }
     
-    func getRecommendationsGivenOfTheUser(handler: @escaping (_ movieArray: [Movie]) -> ()){
+    func getRecommendationsGivenToTheUser(handler: @escaping (_ movieArray: [Movie]) -> ()){
+        
         var movieArray: [Movie] = []
         
         REF_BASE.child("Users").observe(.value) { (usersSnapshot) in
@@ -218,28 +220,66 @@ class DataService{
                     
                     guard let innerSnapshot = user.childSnapshot(forPath: "Recommendations").children.allObjects as? [DataSnapshot] else { return }
                     
-                    print(innerSnapshot)
                     
                     for item in innerSnapshot{
-                        print("getRecommendationsGivenOfTheUserItem")
-                        print(item)
+                       
                         let id = 0
                         let movieTitle = item.childSnapshot(forPath: "movieTitle").value as! String
                         let overview = item.childSnapshot(forPath: "overview").value as! String
                         let poster = item.childSnapshot(forPath: "poster").value as! String
                         let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
                         let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
-                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
+                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster, user: (item.childSnapshot(forPath: "GivenBy").value as! String))
                         movieArray.append(movie)
                     }
                 }
             }
             
-            print("getRecommendationsGivenOfTheUser:")
-            print(movieArray)
+           
+            
             handler(movieArray)
             movieArray = []
         }
+    }
+    
+    func getRecommendationsGivenByUser(handler: @escaping (_ movieArray: [Movie]) -> ()){
+        
+        var movieArray: [Movie] = []
+        
+        REF_BASE.child("Users").observe(.value) { (usersSnapshot) in
+            
+            guard let usersSnapshot = usersSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+            
+            for user in usersSnapshot{
+                if user.key != Auth.auth().currentUser?.uid{
+                    
+                     guard let innerSnapshot = user.childSnapshot(forPath: "Recommendations").children.allObjects as? [DataSnapshot] else { return }
+                    
+                    for item in innerSnapshot{
+                        if(item.childSnapshot(forPath: "GivenBy").value as? String == Auth.auth().currentUser?.email){
+                            let id = 0
+                            let movieTitle = item.childSnapshot(forPath: "movieTitle").value as! String
+                            let overview = item.childSnapshot(forPath: "overview").value as! String
+                            let poster = item.childSnapshot(forPath: "poster").value as! String
+                            let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
+                            let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
+                            
+                                let user12 = user.childSnapshot(forPath: "Info").childSnapshot(forPath: "email").value as? String
+                                let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster, user: user12!)
+                                movieArray.append(movie)
+                            
+                            
+                        }
+                    }
+                }
+            }
+            
+            print("\n\n \(movieArray) \nin the dataService\n ")
+            handler(movieArray)
+            
+            movieArray = []
+        
+    }
     }
     
     func  getMovieList(handler: @escaping (_ movieArray: [Movie]) -> ()){
@@ -264,7 +304,7 @@ class DataService{
                         let releaseDate = item.childSnapshot(forPath: "releaseDate").value as! String
                        
                         let voteAverage = item.childSnapshot(forPath: "voteAverage").value as! String
-                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster)
+                        let movie = Movie(movieTitle: movieTitle, id: id, voteAverage: Double(voteAverage)!, overview: overview, releaseDate: releaseDate, poster: poster, user: nil)
                         movieArray.append(movie)
                     }
                 }

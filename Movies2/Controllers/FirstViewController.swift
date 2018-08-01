@@ -24,11 +24,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let headerView = UIView()
         headerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
 
-        let headerLabel = UILabel(frame: CGRect(x: 10, y: 2, width:
+        let headerLabel = UILabel(frame: CGRect(x: 20, y: 2, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.textAlignment = .center
         headerLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
-        headerLabel.textColor = UIColor.white
+        headerLabel.textColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
         headerLabel.text = self.genretitles[section]
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)
@@ -46,10 +46,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBOutlet weak var moviesTableView: UITableView!
-    
-   
-    @IBOutlet weak var titleViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchHeightConstraint: NSLayoutConstraint!
     
     var movies: [Movie] = []
     
@@ -69,20 +69,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\n view did load\n")
         
-        
+        searchView.layer.cornerRadius = searchView.frame.width/2 - 10
+        searchView.clipsToBounds = true
+     
         NotificationCenter.default.addObserver(self, selector: #selector(FirstViewController.reloadTableView(_:)), name: Notification.Name("notifUserDataChanged"), object: nil)
         
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
-        
-        
         getAllMovies()
-        
-        
-      
-        
         
     }
     
@@ -172,14 +167,16 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         {
             titleViewHeightConstraint.constant = 0
             titleLabel.text = ""
+            searchHeightConstraint.constant = 0
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
         }
         else
         {
-            titleViewHeightConstraint.constant = 77
-            titleLabel.text = "MovieTracker"
+            titleViewHeightConstraint.constant = 40
+            searchHeightConstraint.constant = 45
+            titleLabel.text = "Movies"
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
