@@ -14,15 +14,24 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     @IBOutlet weak var textField: InsetTextField!
     @IBOutlet weak var tableView: UITableView!
     var spinner: UIActivityIndicatorView?
+    @IBOutlet weak var backView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backView.layer.cornerRadius = backView.frame.width/2 - 10
+        backView.clipsToBounds = true
+        
         textField.delegate = self
         tableView.dataSource  = self
         tableView.delegate = self
         
         textField.addTarget(self, action: #selector(goBtnPressed), for: .editingChanged)
         
+    }
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     func addSpinner(){
