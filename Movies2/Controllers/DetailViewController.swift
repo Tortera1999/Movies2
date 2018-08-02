@@ -30,8 +30,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backView.layer.cornerRadius = backView.frame.width/2 - 10
-        backView.clipsToBounds = true
+//        backView.layer.cornerRadius = backView.frame.width/2 - 10
+//        backView.clipsToBounds = true
       
         backdropPic.af_setImage(withURL: URL(string: movie.poster!)!)
         titleLabel.text = movie.movieTitle!

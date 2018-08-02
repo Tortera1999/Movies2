@@ -62,6 +62,9 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     }
     
    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     //TableView functions

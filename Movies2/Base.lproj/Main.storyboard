@@ -90,7 +90,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="back"/>
                                         <connections>
-                                            <action selector="backButtonPressed:" destination="nXj-RF-xV4" eventType="touchUpInside" id="Yt9-kl-UR0"/>
+                                            <action selector="backButtonPressed:" destination="nXj-RF-xV4" eventType="touchUpInside" id="4gh-md-b0S"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -121,7 +121,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="search" selectedImage="search" id="GGi-NI-JKR"/>
                     <connections>
-                        <outlet property="backView" destination="KRo-TR-VXP" id="H3l-GU-cne"/>
                         <outlet property="tableView" destination="h2w-he-fsr" id="vj7-Uc-syK"/>
                         <outlet property="textField" destination="u5i-Mh-frd" id="Tn0-SO-Cbf"/>
                     </connections>
@@ -159,7 +158,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e66-DI-vU9">
-                                <rect key="frame" x="5" y="135.66666666666669" width="365" height="622.33333333333326"/>
+                                <rect key="frame" x="5" y="135.66666666666669" width="365" height="588.33333333333326"/>
                                 <color key="backgroundColor" red="0.12549019607843137" green="0.12941176470588237" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recTBC" rowHeight="100" id="4IU-be-Z1Q" customClass="RecommendedMoviesTableViewCell" customModule="Movies2" customModuleProvider="target">
