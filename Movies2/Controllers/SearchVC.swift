@@ -14,7 +14,7 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     @IBOutlet weak var textField: InsetTextField!
     @IBOutlet weak var tableView: UITableView!
     var spinner: UIActivityIndicatorView?
-    
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,6 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
         DataService.instance.downloadDataBasedOnGenre(completion: { (success) in
             if(success){
                     self.removeSpinner()
-                    print("\(DataService.instance.movies)")
                     self.tableView.reloadData()
             }
         }, genreID: -1, keyword: textField.text!)
@@ -62,6 +61,9 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     }
     
    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     //TableView functions
@@ -80,6 +82,18 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
+        self.performSegue(withIdentifier: "SVCtoDetailSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "SVCtoDetailSegue"){
+            if let vc = segue.destination as? DetailViewController{
+                vc.movie = DataService.instance.movies[index!]
+            }
+        }
+    }
     
 
     

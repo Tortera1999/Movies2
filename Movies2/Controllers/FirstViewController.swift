@@ -208,24 +208,22 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         row = indexPath.row
-//        let description = indexPath.description
-//        let index = description.index(description.startIndex, offsetBy: 1)
-//        let car = description[index]
-//        column = Int(String(car))!
-        
-column = indexPath.section
-        print("\(column)")
        
-        self.performSegue(withIdentifier: "detailSegue", sender: self)
-
+        
+        column = indexPath.section
+        
+        self.performSegue(withIdentifier: "FVCtoDetailSegue", sender: self)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "detailSegue"){
+        if(segue.identifier == "FVCtoDetailSegue"){
             if let vc = segue.destination as? DetailViewController{
-            vc.movie = allGenreMovies[column][row]
+                vc.movie = allGenreMovies[column][row]
             }
         }
     }
+    
+    
 }
 

@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var backView: UIView!
     
     
+    
      var movie: Movie!
     
     override func viewDidLoad() {
@@ -46,7 +47,8 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func searchButtonPressed(_ sender: Any) {
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
