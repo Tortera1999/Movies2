@@ -25,13 +25,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var backView: UIView!
     
     
+    
      var movie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        backView.layer.cornerRadius = backView.frame.width/2 - 10
-//        backView.clipsToBounds = true
+        backView.layer.cornerRadius = backView.frame.width/2 - 10
+        backView.clipsToBounds = true
       
         backdropPic.af_setImage(withURL: URL(string: movie.poster!)!)
         titleLabel.text = movie.movieTitle!
@@ -46,7 +47,8 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func searchButtonPressed(_ sender: Any) {
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
