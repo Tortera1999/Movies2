@@ -204,6 +204,7 @@ class DataService{
             }
             handler(emailArray,uidArray)
             emailArray = []
+            uidArray = []
         }
     }
     
@@ -337,6 +338,8 @@ class DataService{
             }
             
             handler(emailArray, emailArrayUID)
+            emailArray = []
+            emailArrayUID = []
         }
     }
     

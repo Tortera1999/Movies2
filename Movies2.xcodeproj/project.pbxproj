@@ -39,10 +39,14 @@
 		D516B047210B402500E2ED84 /* AddFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D516B046210B402500E2ED84 /* AddFriendTableViewCell.swift */; };
 		D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1B2105B26F00077A66 /* DetailViewController.swift */; };
 		D51AEE1E21063FA100077A66 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1D21063FA100077A66 /* LoginViewController.swift */; };
+		D51DA36B2115E890005A3B71 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DA36A2115E890005A3B71 /* Group.swift */; };
 		D544C260210D9A2400B739B1 /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */; };
 		D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */; };
 		D58B0DE0211098C0000DFD15 /* DataService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B0DDF211098C0000DFD15 /* DataService2.swift */; };
 		D58B0DE22110A0F8000DFD15 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B0DE12110A0F8000DFD15 /* Message.swift */; };
+		D5CE79F2211497B100C7D266 /* AddAGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */; };
+		D5CE79F421149AA700C7D266 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F321149AA700C7D266 /* GroupTableViewCell.swift */; };
+		D5CE79F62114B09500C7D266 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F52114B09500C7D266 /* ChatViewController.swift */; };
 		D5D6C3DE21089C8500BA5740 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */; };
 		D5D6C3E021089DBD00BA5740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5D6C3DF21089DBD00BA5740 /* GoogleService-Info.plist */; };
 		DEBBB10956FC94A708E3DED3 /* Pods_Movies2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C6C9C3FFAF7CE7EACE185C /* Pods_Movies2Tests.framework */; };
@@ -111,10 +115,14 @@
 		D516B046210B402500E2ED84 /* AddFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendTableViewCell.swift; sourceTree = "<group>"; };
 		D51AEE1B2105B26F00077A66 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D51AEE1D21063FA100077A66 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D51DA36A2115E890005A3B71 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
 		D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		D58B0DDF211098C0000DFD15 /* DataService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService2.swift; sourceTree = "<group>"; };
 		D58B0DE12110A0F8000DFD15 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAGroupViewController.swift; sourceTree = "<group>"; };
+		D5CE79F321149AA700C7D266 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		D5CE79F52114B09500C7D266 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D5D6C3DF21089DBD00BA5740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +200,8 @@
 			children = (
 				D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */,
 				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
+				D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */,
+				D5CE79F52114B09500C7D266 /* ChatViewController.swift */,
 				D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */,
 				D51287012104A47300BF2689 /* ViewController.swift */,
 				D51AEE1B2105B26F00077A66 /* DetailViewController.swift */,
@@ -209,8 +219,10 @@
 			isa = PBXGroup;
 			children = (
 				D51287342104A71400BF2689 /* MovieCollectionViewCell.swift */,
+				D51DA36A2115E890005A3B71 /* Group.swift */,
 				D58B0DE12110A0F8000DFD15 /* Message.swift */,
 				D51287322104A70600BF2689 /* MovieTableViewCell.swift */,
+				D5CE79F321149AA700C7D266 /* GroupTableViewCell.swift */,
 				C750F9082104B44E00E9D250 /* Movie.swift */,
 				C750F91021052D6F00E9D250 /* SearchTableViewCell.swift */,
 				C750F91221052E6D00E9D250 /* SearchData.swift */,
@@ -533,8 +545,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D51287332104A70600BF2689 /* MovieTableViewCell.swift in Sources */,
+				D51DA36B2115E890005A3B71 /* Group.swift in Sources */,
 				C750F90F21051F8500E9D250 /* SearchVC.swift in Sources */,
 				C750F90D21051C7000E9D250 /* InsetTextField.swift in Sources */,
+				D5CE79F421149AA700C7D266 /* GroupTableViewCell.swift in Sources */,
 				C7A63B52210AFDDD000ED2DF /* ProfileVC.swift in Sources */,
 				D58B0DE22110A0F8000DFD15 /* Message.swift in Sources */,
 				D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */,
@@ -542,7 +556,9 @@
 				D58B0DE0211098C0000DFD15 /* DataService2.swift in Sources */,
 				D51287022104A47300BF2689 /* ViewController.swift in Sources */,
 				C7D7B9E1210D07C700B542B3 /* PopOverReccCell.swift in Sources */,
+				D5CE79F2211497B100C7D266 /* AddAGroupViewController.swift in Sources */,
 				C77F624C210728C300A6FA1B /* GradientView.swift in Sources */,
+				D5CE79F62114B09500C7D266 /* ChatViewController.swift in Sources */,
 				C7D7B9DB210D05BF00B542B3 /* PopOverReccVC.swift in Sources */,
 				C77F624A21071FAD00A6FA1B /* CustomViewHomeTitle.swift in Sources */,
 				C750F9092104B44E00E9D250 /* Movie.swift in Sources */,

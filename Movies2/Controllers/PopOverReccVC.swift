@@ -19,6 +19,8 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var friendsArray: [String] = []
     var friendsArrayUID: [String] = []
     
+    static var isIt = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +51,13 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        DataService.instance.writeRecommendationsToFirebase(recommendArray: DataService.instance.recommendArray, movie: DataService.instance.chosenMovie!)
-        self.friendsArray = []
+        if(AppDelegate.popSendButtonAction == 0){
+            DataService.instance.writeRecommendationsToFirebase(recommendArray: DataService.instance.recommendArray, movie: DataService.instance.chosenMovie!)
+            self.friendsArray = []
+        } else{
+            DataService2.instance.addMemberToPrivateGroup(personuid: DataService.instance.recommendArrayUID, nameOfThePerson: DataService.instance.recommendArray, groupId: AppDelegate.group.groupId!, groupName: AppDelegate.group.groupName!, groupPassword: "", groupInfo: AppDelegate.group.groupInfo!)
+        }
+        AppDelegate.popSendButtonAction = 0
         dismiss(animated: true, completion: nil)
     }
     
