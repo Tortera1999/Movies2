@@ -32,8 +32,6 @@ class AddAGroupViewController: UIViewController {
         var index = 0
         index = publicOrPrivateSegmentedControl.selectedSegmentIndex
         
-        print("The selected index is : \(publicOrPrivateSegmentedControl.selectedSegmentIndex)")
-        
         if(index == 0){
             DataService2.instance.writeAGroupToFirebase(publicOrNot: true, passwordForPrivate: "", name: groupName.text!, groupInfo: groupOverview.text!)
         } else{
@@ -43,14 +41,5 @@ class AddAGroupViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
