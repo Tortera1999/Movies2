@@ -16,13 +16,11 @@ class AddAGroupViewController: UIViewController {
     @IBOutlet weak var groupOverview: UITextField!
     @IBOutlet weak var publicOrPrivateSegmentedControl: UISegmentedControl!
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
-    
-    //Variables
-    var friendsArray: [String]?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -32,7 +30,12 @@ class AddAGroupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func addAGroup(_ sender: Any) {
+        if(groupName.text != "" && groupOverview.text != ""){
         var index = 0
         index = publicOrPrivateSegmentedControl.selectedSegmentIndex
         
@@ -43,7 +46,17 @@ class AddAGroupViewController: UIViewController {
         }
         
         self.dismiss(animated: true, completion: nil)
+        }
+        else{
+            let alertController = UIAlertController(title: "Error", message: "Please enter all fields", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
+    
+    
     
 
 }
