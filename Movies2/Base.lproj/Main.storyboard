@@ -1230,9 +1230,11 @@
                         <viewLayoutGuide key="safeArea" id="N03-3U-1ay"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="aVF-Pk-Fh9" id="XmM-7Q-4wb"/>
                         <outlet property="groupName" destination="TKy-Bv-etn" id="CK6-Hu-c3r"/>
                         <outlet property="groupOverview" destination="Fss-jU-i3n" id="Mr4-yh-Tct"/>
                         <outlet property="publicOrPrivateSegmentedControl" destination="Ucr-zN-J6a" id="Ezb-Lp-Aj7"/>
+                        <outlet property="tableView" destination="kAn-oR-4WR" id="7oI-ER-wMn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLN-Bf-4gg" userLabel="First Responder" sceneMemberID="firstResponder"/>

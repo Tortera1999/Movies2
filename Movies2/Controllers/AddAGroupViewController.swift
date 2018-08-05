@@ -10,12 +10,16 @@ import UIKit
 import Firebase
 
 class AddAGroupViewController: UIViewController {
-
+    
+    //Outlets
     @IBOutlet weak var groupName: UITextField!
     @IBOutlet weak var groupOverview: UITextField!
     @IBOutlet weak var publicOrPrivateSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
-    
+    //Variables
+    var friendsArray: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
