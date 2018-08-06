@@ -19,7 +19,11 @@ import Firebase
 let DB_BASE2 = Database.database().reference()
 
 class DataService2{
+    
     static let instance = DataService2()
+    
+    var messages: [Message] = []
+    
     var REF_BASE2 = DB_BASE2
     
     func writeAGroupToFirebase(publicOrNot: Bool, passwordForPrivate: String, name: String, groupInfo: String){
@@ -44,9 +48,11 @@ class DataService2{
         
        let time = Date()
         let dateFormatter = DateFormatter()
-       // dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         dateFormatter.dateFormat = "yyyyMMddhhmmss"
         let dateString = dateFormatter.string(from: time)
+        
+       
+        
         
 
         

@@ -11,6 +11,8 @@ import UIKit
 class ChatCell: UITableViewCell {
 
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var tvLeadingconstraint: NSLayoutConstraint!
+    @IBOutlet weak var tvTrailingconstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
