@@ -42,10 +42,13 @@ class DataService2{
         let ID = SwiftyUUID.UUID()
         let idString = ID.CanonicalString()
         
-        let time = Date()
+       let time = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+       // dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        dateFormatter.dateFormat = "yyyyMMddhhmmss"
         let dateString = dateFormatter.string(from: time)
+        
+
         
         let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : dateString] as [String: Any]
         if(publicOrNot){
@@ -117,7 +120,7 @@ class DataService2{
     func getMessagesForASpecificGroup(publicOrNot: Bool, name: String, idIfPrivate: String, handler: @escaping (_ messages: [Message])->()){
         
         if(publicOrNot){
-            REF_BASE2.child("Groups").child("Public").child(name).child("Messages").observe(.value, with:
+            REF_BASE2.child("Groups").child("Public").child(name).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
                 { (snapshot) in
                     guard let value = snapshot.value as? NSDictionary else { return }
                     print("I am here for now")
@@ -137,7 +140,7 @@ class DataService2{
                 print(error.localizedDescription)
             }
         } else{
-            REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").observe(.value, with:
+            REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
                 { (snapshot) in
                     guard let value = snapshot.value as? NSDictionary else { return }
                     var messageArray: [Message] = []
