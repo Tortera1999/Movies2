@@ -123,9 +123,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatCell
         cell.configureCell(content: messages[indexPath.row].message!)
+        cell.textView.clipsToBounds = true
+        cell.textView.layer.cornerRadius = 5
         if(messages[indexPath.row].sender == Auth.auth().currentUser?.uid){
             cell.tvLeadingconstraint.constant = view.frame.width/3
             cell.tvTrailingconstraint.constant =  5
+            cell.textView.backgroundColor = UIColor(red: 0/255, green: 170/255, blue: 221/255, alpha: 1.0)
+            
         }
         else {
             cell.tvTrailingconstraint.constant = view.frame.width/3
