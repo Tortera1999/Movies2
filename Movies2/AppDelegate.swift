@@ -15,13 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     static var popSendButtonAction = 0
+    
     static var group : Group = Group(groupName: "", groupId: "", groupInfo: "", publicOrNot: true)
+    
+    
+    
+    
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
+       
         
         
         return true

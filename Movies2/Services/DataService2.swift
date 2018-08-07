@@ -19,7 +19,11 @@ import Firebase
 let DB_BASE2 = Database.database().reference()
 
 class DataService2{
+    
     static let instance = DataService2()
+    
+    var messages: [Message] = []
+    
     var REF_BASE2 = DB_BASE2
     
     func writeAGroupToFirebase(publicOrNot: Bool, passwordForPrivate: String, name: String, groupInfo: String){
@@ -41,13 +45,15 @@ class DataService2{
     func writeMessageToGroup(publicOrNot: Bool, name: String, message : String, idIfPrivate: String){
         let ID = SwiftyUUID.UUID()
         let idString = ID.CanonicalString()
+//
+//       let time = Date()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyyMMddhhmmss"
+//        let dateString = dateFormatter.string(from: time)
         
-        let time = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-        let dateString = dateFormatter.string(from: time)
-        
-        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : dateString] as [String: Any]
+        let timestamp = Int(Date().timeIntervalSince1970)
+       
+        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : timestamp] as [String: Any]
         if(publicOrNot){
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Messages").child(idString).setValue(messageArr)
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Members").child((Auth.auth().currentUser?.uid)!)
@@ -117,18 +123,18 @@ class DataService2{
     func getMessagesForASpecificGroup(publicOrNot: Bool, name: String, idIfPrivate: String, handler: @escaping (_ messages: [Message])->()){
         
         if(publicOrNot){
-            REF_BASE2.child("Groups").child("Public").child(name).child("Messages").observe(.value, with:
+            REF_BASE2.child("Groups").child("Public").child(name).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
                 { (snapshot) in
                     guard let value = snapshot.value as? NSDictionary else { return }
-                    print("I am here for now")
                     var messageArray: [Message] = []
                     for (id, obj) in value {
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
                         
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! String, sender: dictVals["sender"] as! String, id: messageId)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
                         messageArray.append(message)
                     }
+                    
                     handler(messageArray)
                     messageArray = []
                     
@@ -137,14 +143,14 @@ class DataService2{
                 print(error.localizedDescription)
             }
         } else{
-            REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").observe(.value, with:
+            REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
                 { (snapshot) in
                     guard let value = snapshot.value as? NSDictionary else { return }
                     var messageArray: [Message] = []
                     for (id, obj) in value {
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! String, sender: dictVals["sender"] as! String, id: messageId)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
                         messageArray.append(message)
                     }
                     handler(messageArray)
