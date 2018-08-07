@@ -25,6 +25,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
   
     //Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageTF: UITextField!
     @IBOutlet weak var addFriendsButton: UIButton!
     
@@ -59,6 +60,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         tableView.dataSource = self
         tableView.delegate = self
+        
+        self.titleLabel.text = AppDelegate.group.groupName!
         
         
         if(AppDelegate.popSendButtonAction == 0){
