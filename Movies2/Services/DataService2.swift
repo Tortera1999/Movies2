@@ -45,18 +45,15 @@ class DataService2{
     func writeMessageToGroup(publicOrNot: Bool, name: String, message : String, idIfPrivate: String){
         let ID = SwiftyUUID.UUID()
         let idString = ID.CanonicalString()
+//
+//       let time = Date()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyyMMddhhmmss"
+//        let dateString = dateFormatter.string(from: time)
         
-       let time = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMddhhmmss"
-        let dateString = dateFormatter.string(from: time)
-        
+        let timestamp = Int(Date().timeIntervalSince1970)
        
-        
-        
-
-        
-        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : dateString] as [String: Any]
+        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : timestamp] as [String: Any]
         if(publicOrNot){
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Messages").child(idString).setValue(messageArr)
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Members").child((Auth.auth().currentUser?.uid)!)
@@ -129,15 +126,15 @@ class DataService2{
             REF_BASE2.child("Groups").child("Public").child(name).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
                 { (snapshot) in
                     guard let value = snapshot.value as? NSDictionary else { return }
-                    print("I am here for now")
                     var messageArray: [Message] = []
                     for (id, obj) in value {
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
                         
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! String, sender: dictVals["sender"] as! String, id: messageId)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
                         messageArray.append(message)
                     }
+                    
                     handler(messageArray)
                     messageArray = []
                     
@@ -153,7 +150,7 @@ class DataService2{
                     for (id, obj) in value {
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! String, sender: dictVals["sender"] as! String, id: messageId)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
                         messageArray.append(message)
                     }
                     handler(messageArray)
