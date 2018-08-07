@@ -35,13 +35,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if(AppDelegate.popSendButtonAction == 0){
             REF_BASE3.child("Groups").child("Public").child(AppDelegate.group.groupName!).child("Messages").observe(.childAdded) { (snap) in
                 self.messageUpdate()
-                print("changed")
+                
             }
         }
         else{
             REF_BASE3.child("Groups").child("Private").child(AppDelegate.group.groupName!).child("Messages").observe(.childAdded) { (snap) in
                 self.messageUpdate()
-                print("changed")
+                
             }
         }
         
@@ -75,16 +75,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    func caller(){
-        var time = Timer(timeInterval: 5, target: self, selector: #selector(ChatViewController.messageUpdate), userInfo: nil, repeats: true)
-    }
-    
+   
 
     @objc func messageUpdate(){
         DataService2.instance.getMessagesForASpecificGroup(publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!) { (messages1) in
-            self.messages = messages1
+            self.messages = messages1.sorted(by: {$0.time! < $1.time!})
             self.tableView.reloadData()
-            print("added \(self.messages)")
+           
         }
         
         
