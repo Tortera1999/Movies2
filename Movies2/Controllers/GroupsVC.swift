@@ -23,18 +23,20 @@ class GroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         
         groupsTB.delegate = self
         groupsTB.dataSource = self
-
-        DataService2.instance.getAllPublicGroups { (groupArray) in
+        
+        DataService2.instance.getAllUserSubscribedPublicGroups { (groupArray) in
             self.groupsArray = groupArray
+            print(groupArray)
             self.groupsTB.reloadData()
         }
-        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func PublicOrPrivatefunc(_ sender: Any) {
         if publicOrPrivateSegment.selectedSegmentIndex == 0 {
-            DataService2.instance.getAllPublicGroups { (groupArray) in
+            DataService2.instance.getAllUserSubscribedPublicGroups { (groupArray) in
+                print("The public array:")
+                print(self.groupsArray)
                 self.groupsArray = groupArray
                 self.groupsTB.reloadData()
             }
@@ -48,6 +50,9 @@ class GroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBAction func addAGroupAction(_ sender: Any) {
         self.performSegue(withIdentifier: "addAGroupSegue", sender: self)
+    }
+    @IBAction func searchGroups(_ sender: Any) {
+        self.performSegue(withIdentifier: "findAGroupSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

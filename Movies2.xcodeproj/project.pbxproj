@@ -43,6 +43,8 @@
 		D51DA36B2115E890005A3B71 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DA36A2115E890005A3B71 /* Group.swift */; };
 		D544C260210D9A2400B739B1 /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */; };
 		D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */; };
+		D56B2B9E211B5F74000A749A /* SearchForGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56B2B9D211B5F74000A749A /* SearchForGroupViewController.swift */; };
+		D56B2BA0211B5F97000A749A /* SearchForGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56B2B9F211B5F97000A749A /* SearchForGroupTableViewCell.swift */; };
 		D58B0DE0211098C0000DFD15 /* DataService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B0DDF211098C0000DFD15 /* DataService2.swift */; };
 		D58B0DE22110A0F8000DFD15 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B0DE12110A0F8000DFD15 /* Message.swift */; };
 		D5CE79F2211497B100C7D266 /* AddAGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */; };
@@ -120,6 +122,8 @@
 		D51DA36A2115E890005A3B71 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
 		D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesTableViewCell.swift; sourceTree = "<group>"; };
+		D56B2B9D211B5F74000A749A /* SearchForGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForGroupViewController.swift; sourceTree = "<group>"; };
+		D56B2B9F211B5F97000A749A /* SearchForGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForGroupTableViewCell.swift; sourceTree = "<group>"; };
 		D58B0DDF211098C0000DFD15 /* DataService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService2.swift; sourceTree = "<group>"; };
 		D58B0DE12110A0F8000DFD15 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAGroupViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				D51287012104A47300BF2689 /* ViewController.swift */,
 				D51AEE1B2105B26F00077A66 /* DetailViewController.swift */,
 				C750F90E21051F8500E9D250 /* SearchVC.swift */,
+				D56B2B9D211B5F74000A749A /* SearchForGroupViewController.swift */,
 				D51AEE1D21063FA100077A66 /* LoginViewController.swift */,
 				C7A63B51210AFDDD000ED2DF /* ProfileVC.swift */,
 				D516B044210B3FE800E2ED84 /* AddFriendViewController.swift */,
@@ -227,6 +232,7 @@
 				D5CE79F321149AA700C7D266 /* GroupTableViewCell.swift */,
 				C750F9082104B44E00E9D250 /* Movie.swift */,
 				C750F91021052D6F00E9D250 /* SearchTableViewCell.swift */,
+				D56B2B9F211B5F97000A749A /* SearchForGroupTableViewCell.swift */,
 				C750F91221052E6D00E9D250 /* SearchData.swift */,
 				C7A63B53210AFEA7000ED2DF /* ListCell.swift */,
 				D516B046210B402500E2ED84 /* AddFriendTableViewCell.swift */,
@@ -569,10 +575,12 @@
 				C750F91321052E6D00E9D250 /* SearchData.swift in Sources */,
 				D51287082104A47300BF2689 /* Movies2.xcdatamodeld in Sources */,
 				D5D6C3DE21089C8500BA5740 /* RegisterPageViewController.swift in Sources */,
+				D56B2B9E211B5F74000A749A /* SearchForGroupViewController.swift in Sources */,
 				D51287352104A71400BF2689 /* MovieCollectionViewCell.swift in Sources */,
 				D516B047210B402500E2ED84 /* AddFriendTableViewCell.swift in Sources */,
 				C7A63B54210AFEA7000ED2DF /* ListCell.swift in Sources */,
 				C782CE4F21146280002DECEA /* GroupsVC.swift in Sources */,
+				D56B2BA0211B5F97000A749A /* SearchForGroupTableViewCell.swift in Sources */,
 				C750F9022104ADB700E9D250 /* Constants.swift in Sources */,
 				D516B045210B3FE800E2ED84 /* AddFriendViewController.swift in Sources */,
 				D51287002104A47300BF2689 /* AppDelegate.swift in Sources */,

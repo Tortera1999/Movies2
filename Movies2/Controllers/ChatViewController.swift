@@ -22,6 +22,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var sendTheName = ""
     
+    var canUpvote = true
+    var canDowvote = true
+    
   
     //Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -83,10 +86,30 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func messageUpdate(){
         DataService2.instance.getMessagesForASpecificGroup(publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!) { (messages1) in
             self.messages = messages1.sorted(by: {$0.time! < $1.time!})
+            
+            print(self.messages)
             self.tableView.reloadData()
            
         }
         
+//        for item in messages{
+//            DataService2.instance.checkIfMessageHasBeenUpvoted(messageId: item.id!, handler: { (upvoted) in
+//                item.upvotedBefore = upvoted
+//            })
+//        }
+//        
+//        for item in messages{
+//            DataService2.instance.checkIfMessageHasBeenDownvoted(messageId: item.id!, handler: { (downvote) in
+//                item.downvotedBefore = downvote
+//            })
+//        }
+//        
+//        for item in messages{
+//            print(item.upvotedBefore!)
+//            print(item.downvotedBefore!)
+//        }
+        
+        self.tableView.reloadData()
         
     }
     
@@ -120,11 +143,47 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return messages.count
     }
     
+    @objc func upvoteFunc(sender : UIButton){
+//        messages[sender.tag].upvotedBefore = true
+//        if(messages[sender.tag].downvotedBefore!){
+//            messages[sender.tag].downvotedBefore = false
+//        }
+        sender.isHidden = true
+        var count = Int(messages[sender.tag].favoriteCount!)!
+        count = count + 1
+        messages[sender.tag].favoriteCount = String(count)
+        DataService2.instance.upvoteOrDownvoteNow(upvoteOrDownvote: true, publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!, messageIn: messages[sender.tag])
+    }
+    
+    @objc func downvoteFunc(sender : UIButton){
+//        messages[sender.tag].downvotedBefore = true
+//        if(messages[sender.tag].upvotedBefore!){
+//            messages[sender.tag].upvotedBefore = false
+//        }
+        sender.isHidden = true
+        var count = Int(messages[sender.tag].favoriteCount!)!
+        count = count - 1
+        messages[sender.tag].favoriteCount = String(count)
+        DataService2.instance.upvoteOrDownvoteNow(upvoteOrDownvote: false, publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!, messageIn: messages[sender.tag])
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatCell
         cell.configureCell(content: messages[indexPath.row].message!)
         cell.textView.clipsToBounds = true
         cell.textView.layer.cornerRadius = 5
+        cell.favoriteCountLabel.text = messages[indexPath.row].favoriteCount!
+        
+        cell.upvoteButton.tag = indexPath.row
+        cell.downvoteButton.tag = indexPath.row
+        
+//        cell.upvoteButton.isHidden = messages[indexPath.row].upvotedBefore!
+//        cell.downvoteButton.isHidden = messages[indexPath.row].downvotedBefore!
+        
+        
+        cell.upvoteButton.addTarget(self, action: #selector(ChatViewController.upvoteFunc), for: UIControlEvents.touchUpInside)
+        cell.downvoteButton.addTarget(self, action: #selector(ChatViewController.downvoteFunc), for: UIControlEvents.touchUpInside)
+        
         if(messages[indexPath.row].sender == Auth.auth().currentUser?.uid){
             cell.tvLeadingconstraint.constant = view.frame.width/3
             cell.tvTrailingconstraint.constant =  5
