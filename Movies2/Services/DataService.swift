@@ -72,7 +72,6 @@ class DataService{
         
         REF_BASE.child("Users").child((Auth.auth().currentUser?.uid)!).child("Watched").child(idString).setValue(values)
         
-        print("Wrote to firebase correctly")
     }
     
     func addFriends(email : String, uid : String){
@@ -274,8 +273,8 @@ class DataService{
                     }
                 }
             }
-            
-            print("\n\n \(movieArray) \nin the dataService\n ")
+//            
+//            print("\n\n \(movieArray) \nin the dataService\n ")
             handler(movieArray)
             
             movieArray = []
@@ -297,7 +296,7 @@ class DataService{
                     guard let innerSnapshot = user.childSnapshot(forPath: "Watched").children.allObjects as? [DataSnapshot] else { return }
 
                     for item in innerSnapshot{
-                        print(item)
+                        //print(item)
                         let id = 0
                         let movieTitle = item.childSnapshot(forPath: "movieTitle").value as! String
                         let overview = item.childSnapshot(forPath: "overview").value as! String

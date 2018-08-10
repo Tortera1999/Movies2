@@ -14,11 +14,21 @@ class Message{
     var time: Int?
     var sender: String?
     var id: String?
+    var favoriteCount: String?
+    var upvotedBefore: Bool?
+    var downvotedBefore: Bool?
     
-    init(message: String, time: Int, sender: String, id: String){
+    init(message: String, time: Int, sender: String, id: String, favoriteCount: String, upvotedBefore: Bool, downvotedBefore: Bool){
         self.message = message
         self.time = time
         self.sender = sender
         self.id = id
+        self.favoriteCount = favoriteCount
+        self.upvotedBefore = upvotedBefore
+        self.downvotedBefore = downvotedBefore
+    }
+    
+    func toString(){
+        print("Upvoted: \(self.upvotedBefore!) Downvoted: \(self.downvotedBefore!)")
     }
 }
