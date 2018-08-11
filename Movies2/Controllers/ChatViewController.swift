@@ -130,11 +130,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if(AppDelegate.popSendButtonAction == 0){
             DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
                 print("\nvotes: \(votes)\n")
+                return
             }
         }
         else{
             DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
                 print("\nvotes: \(votes)\n")
+                return
             }
         }
     }
@@ -143,12 +145,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if(AppDelegate.popSendButtonAction == 0){
             DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
                 print("\nvotes: \(votes)\n")
+                
             }
         }
         else{
             DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
                 print("\nvotes: \(votes)\n")
             }
+            
         }
         
     }
