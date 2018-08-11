@@ -5,7 +5,6 @@
 //  Created by Nikhil Iyer on 7/31/18.
 //  Copyright © 2018 Nikhil Iyer. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import Alamofire
@@ -38,7 +37,7 @@ class DataService2{
             let idString = ID.CanonicalString()
             let values = ["name" : name, "groupInfo" : groupInfo, "password" : passwordForPrivate, "id" : idString] as [String: Any]
             self.REF_BASE2.child("Groups").child("Private").child(idString).child("Info").setValue(values)
-        self.REF_BASE2.child("Groups").child("Private").child(idString).child("Members").child((Auth.auth().currentUser?.uid)!).setValue((Auth.auth().currentUser?.email)!)
+            self.REF_BASE2.child("Groups").child("Private").child(idString).child("Members").child((Auth.auth().currentUser?.uid)!).setValue((Auth.auth().currentUser?.email)!)
             self.REF_BASE2.child("Users").child((Auth.auth().currentUser?.uid)!).child("Groups").child("Private").child(idString).child("Info").setValue(values)
         }
     }
@@ -48,14 +47,14 @@ class DataService2{
         let idString = ID.CanonicalString()
         
         let timestamp = Int(Date().timeIntervalSince1970)
-       
+        
         let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : timestamp, "favoriteCount" : "0"] as [String: Any]
         if(publicOrNot){
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Messages").child(idString).setValue(messageArr)
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Members").child((Auth.auth().currentUser?.uid)!)
         } else{
-        self.REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").child(idString).setValue(messageArr)
-        self.REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Members").child((Auth.auth().currentUser?.uid)!)
+            self.REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").child(idString).setValue(messageArr)
+            self.REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Members").child((Auth.auth().currentUser?.uid)!)
         }
     }
     
@@ -64,7 +63,7 @@ class DataService2{
         if(publicOrNot){
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Messages").child(messageIn.id!).child("favoriteCount").setValue(messageIn.favoriteCount!)
         } else{
-        self.REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").child(messageIn.id!).child("favoriteCount").setValue(messageIn.favoriteCount!)
+            self.REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").child(messageIn.id!).child("favoriteCount").setValue(messageIn.favoriteCount!)
         }
         
         if(upvoteOrDownvote){
@@ -72,7 +71,7 @@ class DataService2{
         } else{
             self.REF_BASE2.child("Users").child((Auth.auth().currentUser?.uid)!).child("Downvotes").child(messageIn.id!).setValue(messageIn.sender!)
         }
-            
+        
     }
     
     func addMemberToPrivateGroup(personuid: [String], nameOfThePerson: [String], groupId: String, groupName: String, groupPassword: String, groupInfo: String){
@@ -97,21 +96,21 @@ class DataService2{
     func getAllUserSubscribedPublicGroups(handler: @escaping (_ publicGroupsArr: [Group])->()){
         var publicGroupsArr : [Group] = []
         REF_BASE2.child("Users").child((Auth.auth().currentUser?.uid)!).child("Groups").child("Public").observe(.value) { (snapshot) in
-
+            
             guard let snapshot = snapshot.children.allObjects  as? [DataSnapshot] else { return }
-
+            
             print("getAllUserSubscribedPublicGroups:")
             print(snapshot)
             for snap in snapshot{
                 guard let innerSnapshot = snap.childSnapshot(forPath: "Info").childSnapshot(forPath: "name").value as? String else{ return }
                 guard let innerSnapshot2 = snap.childSnapshot(forPath: "Info").childSnapshot(forPath: "groupInfo").value as? String else{ return }
-
-
+                
+                
                 let group = Group(groupName: innerSnapshot, groupId: "", groupInfo: innerSnapshot2, publicOrNot: true)
-
+                
                 publicGroupsArr.append(group)
             }
-
+            
             handler(publicGroupsArr)
             publicGroupsArr = []
         }

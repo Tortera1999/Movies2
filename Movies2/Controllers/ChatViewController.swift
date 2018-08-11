@@ -1,22 +1,14 @@
-//
-//  ChatViewController.swift
-//  Movies2
-//
-//  Created by Nikhil Iyer on 8/3/18.
-//  Copyright © 2018 Nikhil Iyer. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
 let DB_BASE3 = Database.database().reference()
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-   
+    
     var REF_BASE3 = DB_BASE3
     
     var messages: [Message] = []
-
+    
     var id : String = ""
     var publicOrNot = true
     
@@ -25,7 +17,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var canUpvote = true
     var canDowvote = true
     
-  
+    
     //Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -54,13 +46,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-
-      
+        
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -76,38 +68,38 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         
-       messageUpdate()
+        messageUpdate()
         
         
     }
     
-   
-
+    
+    
     @objc func messageUpdate(){
         DataService2.instance.getMessagesForASpecificGroup(publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!) { (messages1) in
             self.messages = messages1.sorted(by: {$0.time! < $1.time!})
             
             print(self.messages)
             self.tableView.reloadData()
-           
+            
         }
         
-//        for item in messages{
-//            DataService2.instance.checkIfMessageHasBeenUpvoted(messageId: item.id!, handler: { (upvoted) in
-//                item.upvotedBefore = upvoted
-//            })
-//        }
-//        
-//        for item in messages{
-//            DataService2.instance.checkIfMessageHasBeenDownvoted(messageId: item.id!, handler: { (downvote) in
-//                item.downvotedBefore = downvote
-//            })
-//        }
-//        
-//        for item in messages{
-//            print(item.upvotedBefore!)
-//            print(item.downvotedBefore!)
-//        }
+        //        for item in messages{
+        //            DataService2.instance.checkIfMessageHasBeenUpvoted(messageId: item.id!, handler: { (upvoted) in
+        //                item.upvotedBefore = upvoted
+        //            })
+        //        }
+        //
+        //        for item in messages{
+        //            DataService2.instance.checkIfMessageHasBeenDownvoted(messageId: item.id!, handler: { (downvote) in
+        //                item.downvotedBefore = downvote
+        //            })
+        //        }
+        //
+        //        for item in messages{
+        //            print(item.upvotedBefore!)
+        //            print(item.downvotedBefore!)
+        //        }
         
         self.tableView.reloadData()
         
@@ -118,7 +110,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     @IBAction func addAFriend(_ sender: Any) {
         AppDelegate.popSendButtonAction = 1
         let  popvc = self.storyboard?.instantiateViewController(withIdentifier: "PopOverReccVC")
@@ -138,16 +130,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     //TableView functions
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     @objc func upvoteFunc(sender : UIButton){
-//        messages[sender.tag].upvotedBefore = true
-//        if(messages[sender.tag].downvotedBefore!){
-//            messages[sender.tag].downvotedBefore = false
-//        }
+        //        messages[sender.tag].upvotedBefore = true
+        //        if(messages[sender.tag].downvotedBefore!){
+        //            messages[sender.tag].downvotedBefore = false
+        //        }
         sender.isHidden = true
         var count = Int(messages[sender.tag].favoriteCount!)!
         count = count + 1
@@ -156,10 +147,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func downvoteFunc(sender : UIButton){
-//        messages[sender.tag].downvotedBefore = true
-//        if(messages[sender.tag].upvotedBefore!){
-//            messages[sender.tag].upvotedBefore = false
-//        }
+        //        messages[sender.tag].downvotedBefore = true
+        //        if(messages[sender.tag].upvotedBefore!){
+        //            messages[sender.tag].upvotedBefore = false
+        //        }
         sender.isHidden = true
         var count = Int(messages[sender.tag].favoriteCount!)!
         count = count - 1
@@ -177,8 +168,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.upvoteButton.tag = indexPath.row
         cell.downvoteButton.tag = indexPath.row
         
-//        cell.upvoteButton.isHidden = messages[indexPath.row].upvotedBefore!
-//        cell.downvoteButton.isHidden = messages[indexPath.row].downvotedBefore!
+        //        cell.upvoteButton.isHidden = messages[indexPath.row].upvotedBefore!
+        //        cell.downvoteButton.isHidden = messages[indexPath.row].downvotedBefore!
         
         
         cell.upvoteButton.addTarget(self, action: #selector(ChatViewController.upvoteFunc), for: UIControlEvents.touchUpInside)
@@ -197,9 +188,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-
     
     
-
-
+    
+    
+    
 }
