@@ -22,8 +22,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var sendTheName = ""
     
-    var canUpvote = true
-    var canDowvote = true
+   
     
   
     //Outlets
@@ -92,23 +91,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
            
         }
         
-//        for item in messages{
-//            DataService2.instance.checkIfMessageHasBeenUpvoted(messageId: item.id!, handler: { (upvoted) in
-//                item.upvotedBefore = upvoted
-//            })
-//        }
-//        
-//        for item in messages{
-//            DataService2.instance.checkIfMessageHasBeenDownvoted(messageId: item.id!, handler: { (downvote) in
-//                item.downvotedBefore = downvote
-//            })
-//        }
-//        
-//        for item in messages{
-//            print(item.upvotedBefore!)
-//            print(item.downvotedBefore!)
-//        }
-        
+
         self.tableView.reloadData()
         
     }
@@ -144,27 +127,34 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func upvoteFunc(sender : UIButton){
-//        messages[sender.tag].upvotedBefore = true
-//        if(messages[sender.tag].downvotedBefore!){
-//            messages[sender.tag].downvotedBefore = false
-//        }
-        sender.isHidden = true
-        var count = Int(messages[sender.tag].favoriteCount!)!
-        count = count + 1
-        messages[sender.tag].favoriteCount = String(count)
-        DataService2.instance.upvoteOrDownvoteNow(upvoteOrDownvote: true, publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!, messageIn: messages[sender.tag])
+        if(AppDelegate.popSendButtonAction == 0){
+            DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
+                print("\nvotes: \(votes)\n")
+                return
+            }
+        }
+        else{
+            DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
+                print("\nvotes: \(votes)\n")
+                return
+            }
+        }
     }
     
     @objc func downvoteFunc(sender : UIButton){
-//        messages[sender.tag].downvotedBefore = true
-//        if(messages[sender.tag].upvotedBefore!){
-//            messages[sender.tag].upvotedBefore = false
-//        }
-        sender.isHidden = true
-        var count = Int(messages[sender.tag].favoriteCount!)!
-        count = count - 1
-        messages[sender.tag].favoriteCount = String(count)
-        DataService2.instance.upvoteOrDownvoteNow(upvoteOrDownvote: false, publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!, messageIn: messages[sender.tag])
+        if(AppDelegate.popSendButtonAction == 0){
+            DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
+                print("\nvotes: \(votes)\n")
+                
+            }
+        }
+        else{
+            DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
+                print("\nvotes: \(votes)\n")
+            }
+            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -172,14 +162,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.configureCell(content: messages[indexPath.row].message!)
         cell.textView.clipsToBounds = true
         cell.textView.layer.cornerRadius = 5
-        cell.favoriteCountLabel.text = messages[indexPath.row].favoriteCount!
-        
-        cell.upvoteButton.tag = indexPath.row
-        cell.downvoteButton.tag = indexPath.row
-        
-//        cell.upvoteButton.isHidden = messages[indexPath.row].upvotedBefore!
-//        cell.downvoteButton.isHidden = messages[indexPath.row].downvotedBefore!
-        
+      
+        self.id = messages[indexPath.row].id!
         
         cell.upvoteButton.addTarget(self, action: #selector(ChatViewController.upvoteFunc), for: UIControlEvents.touchUpInside)
         cell.downvoteButton.addTarget(self, action: #selector(ChatViewController.downvoteFunc), for: UIControlEvents.touchUpInside)

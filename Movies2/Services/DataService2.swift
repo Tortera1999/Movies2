@@ -49,7 +49,7 @@ class DataService2{
         
         let timestamp = Int(Date().timeIntervalSince1970)
        
-        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : timestamp, "favoriteCount" : "0"] as [String: Any]
+        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : timestamp, "favoriteCount" : 0] as [String: Any]
         if(publicOrNot){
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Messages").child(idString).setValue(messageArr)
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Members").child((Auth.auth().currentUser?.uid)!)
@@ -59,21 +59,7 @@ class DataService2{
         }
     }
     
-    func upvoteOrDownvoteNow(upvoteOrDownvote: Bool, publicOrNot: Bool, name: String, idIfPrivate: String, messageIn: Message){
-        
-        if(publicOrNot){
-            self.REF_BASE2.child("Groups").child("Public").child(name).child("Messages").child(messageIn.id!).child("favoriteCount").setValue(messageIn.favoriteCount!)
-        } else{
-        self.REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").child(messageIn.id!).child("favoriteCount").setValue(messageIn.favoriteCount!)
-        }
-        
-        if(upvoteOrDownvote){
-            self.REF_BASE2.child("Users").child((Auth.auth().currentUser?.uid)!).child("Upvotes").child(messageIn.id!).setValue(messageIn.sender!)
-        } else{
-            self.REF_BASE2.child("Users").child((Auth.auth().currentUser?.uid)!).child("Downvotes").child(messageIn.id!).setValue(messageIn.sender!)
-        }
-            
-    }
+  
     
     func addMemberToPrivateGroup(personuid: [String], nameOfThePerson: [String], groupId: String, groupName: String, groupPassword: String, groupInfo: String){
         let values = ["name" : groupName, "groupInfo" : groupInfo, "password" : groupPassword, "id" : groupId] as [String: Any]
@@ -163,38 +149,9 @@ class DataService2{
     
     
     
-    func checkIfMessageHasBeenUpvoted(messageId: String, handler: @escaping (_ upvoted: Bool)->()){
-        
-        REF_BASE2.child("Users").child((Auth.auth().currentUser?.uid)!).child("Upvotes").observe(.value) { (snapshot) in
-            guard let snapshot = snapshot.children.allObjects  as? [DataSnapshot] else { return }
-            
-            for snap in snapshot{
-                if(snap.key == messageId){
-                    print("HEERREE U")
-                    // This if statement runs, and HEERREE U prints out.. which means it is recognizing the message has been downvoted, but the handler is sent after the message object is created, which is of no use
-                    handler(true)
-                }
-            }
-            handler(false)
-        }
-        
-    }
+   
     
-    func checkIfMessageHasBeenDownvoted(messageId: String, handler: @escaping (_ downvoted: Bool)->()){
-        
-        REF_BASE2.child("Users").child((Auth.auth().currentUser?.uid)!).child("Downvotes").observe(.value) { (snapshot) in
-            guard let snapshot = snapshot.children.allObjects  as? [DataSnapshot] else { return }
-            
-            for snap in snapshot{
-                if(snap.key == messageId){
-                    print("HEERREE D")
-                    // This if statement runs, and HEERREE D prints out.. which means it is recognizing the message has been downvoted, but the handler is sent after the message object is created, which is of no use
-                    handler(true)
-                }
-            }
-            handler(false)
-        }
-    }
+   
     
     func getMessagesForASpecificGroup(publicOrNot: Bool, name: String, idIfPrivate: String, handler: @escaping (_ messages: [Message])->()){
         
@@ -207,29 +164,8 @@ class DataService2{
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
                         
-                        var upvotedBefore = false
-                        var downvotedBefore = false
-                        
-                        //The next two statements are not updating the above two variables:
-                        
-                        DataService2.instance.checkIfMessageHasBeenUpvoted(messageId: messageId, handler: { (upvote) in
-                            upvotedBefore = upvote
-                        })
-                        
-                        DataService2.instance.checkIfMessageHasBeenDownvoted(messageId: messageId, handler: { (downvote) in
-                            downvotedBefore = downvote
-                        })
-                        
-                        //end of the problem..
-                        //Think it is some async problem.. tried using dispatchGroup, but didnt work.. // same for the bottom else statement..
-                        
-                        //false keeps printing out when true needs to be printed
-                        print(upvotedBefore)
-                        print(downvotedBefore)
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId, favoriteCount: dictVals["favoriteCount"] as! String, upvotedBefore: upvotedBefore, downvotedBefore: downvotedBefore)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
                         messageArray.append(message)
-                        
-                        
                     }
                     
                     handler(messageArray)
@@ -247,30 +183,78 @@ class DataService2{
                     for (id, obj) in value {
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
-                        
-                        var upvotedBefore = false
-                        var downvotedBefore = false
-                        
-                        DataService2.instance.checkIfMessageHasBeenUpvoted(messageId: messageId, handler: { (upvote) in
-                            upvotedBefore = upvote
-                        })
-                        
-                        DataService2.instance.checkIfMessageHasBeenDownvoted(messageId: messageId, handler: { (downvote) in
-                            downvotedBefore = downvote
-                        })
-                        
-                        print(upvotedBefore)
-                        print(downvotedBefore)
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId, favoriteCount: dictVals["favoriteCount"] as! String, upvotedBefore: upvotedBefore, downvotedBefore: downvotedBefore)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
                         messageArray.append(message)
                     }
-                    
                     handler(messageArray)
                     messageArray = []
             })
             { (error) in
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func vote(isUpvote: Bool, groupName: String, isPublic: Bool, messageID: String, handler : @escaping (_ count: Int) -> () ){
+        
+        
+        
+        var currVotes = 0
+        
+        if(isPublic) {
+            REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").observe(.value) { (messageSnapshot) in
+                
+                guard let messageSnapshot = messageSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+                
+                for message in messageSnapshot{
+                    if message.key == messageID{
+                        print("message key = \(message.key)")
+                        currVotes = message.childSnapshot(forPath: "favoriteCount").value as! Int
+                        if(isUpvote){
+                            currVotes = currVotes + 1
+                        }
+                        else{
+                            currVotes = currVotes - 1
+                        }
+                        
+                        self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes])
+                        
+                        handler(currVotes)
+                       break
+                    }
+                }
+                
+            }
+            
+         
+        }
+        else{
+            REF_BASE2.child("Groups").child("Private").child(groupName).child("Messages").observe(.value) { (messageSnapshot) in
+                
+                guard let messageSnapshot = messageSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+                
+                for message in messageSnapshot{
+                    if message.key == messageID{
+                        currVotes = message.childSnapshot(forPath: "favoriteCount").value as! Int
+                        if(isUpvote){
+                            currVotes = currVotes + 1
+                        }
+                        else{
+                            currVotes = currVotes - 1
+                        }
+                        
+                       
+                        
+                        self.REF_BASE2.child("Groups").child("Private").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes])
+                        
+                        handler(currVotes)
+                    }
+                }
+                
+            }
+            
+            
+            
         }
     }
 }
