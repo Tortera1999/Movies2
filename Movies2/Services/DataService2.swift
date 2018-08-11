@@ -197,6 +197,8 @@ class DataService2{
     
     func vote(isUpvote: Bool, groupName: String, isPublic: Bool, messageID: String, handler : @escaping (_ count: Int) -> () ){
         
+        
+        
         var currVotes = 0
         
         if(isPublic) {
@@ -206,24 +208,30 @@ class DataService2{
                 
                 for message in messageSnapshot{
                     if message.key == messageID{
-                        currVotes = message.childSnapshot(forPath: "favoriteCount").value as! Int 
+                        currVotes = message.childSnapshot(forPath: "favoriteCount").value as! Int
+                        print("currVotes before : \(currVotes)")
                     }
                 }
                 
             }
             
-            var voteToWrite = 0
+           
             
             if(isUpvote){
-                 voteToWrite = currVotes + 1
+                 currVotes = currVotes + 1
             }
             else{
-                 voteToWrite = currVotes - 1
+                 currVotes = currVotes - 1
             }
             
-            REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": voteToWrite])
+            print("currVotes after : \(currVotes)")
             
-            handler(voteToWrite)
+            
+            REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes])
+            
+            
+            
+            handler(currVotes)
             
         }
         else{
@@ -239,18 +247,19 @@ class DataService2{
                 
             }
             
-            var voteToWrite = 0
-            
             if(isUpvote){
-                voteToWrite = currVotes + 1
+                currVotes = currVotes + 1
             }
             else{
-                voteToWrite = currVotes - 1
+                currVotes = currVotes - 1
             }
             
-            REF_BASE2.child("Groups").child("Private").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": voteToWrite])
+            print("currVotes after : \(currVotes)")
             
-            handler(voteToWrite)
+            
+            REF_BASE2.child("Groups").child("Private").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes])
+            
+            handler(currVotes)
             
         }
     }
