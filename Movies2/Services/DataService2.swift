@@ -202,7 +202,7 @@ class DataService2{
         var currVotes = 0
         
         if(isPublic) {
-            REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").observe(.value) { (messageSnapshot) in
+            REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").observeSingleEvent(of: .value) { (messageSnapshot) in
                 
                 guard let messageSnapshot = messageSnapshot.children.allObjects  as? [DataSnapshot] else { return }
                 

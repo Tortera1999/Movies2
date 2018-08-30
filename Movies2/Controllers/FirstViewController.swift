@@ -207,11 +207,18 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        row = indexPath.row
+        
        
         
-        column = indexPath.section
         
+        let tb = collectionView.superview?.superview?.superview as! UITableView
+        let idpath = tb.indexPath(for: collectionView.superview?.superview as! UITableViewCell) as! IndexPath
+        row = idpath.section
+        column = indexPath.row
+
+        print(idpath)
+        print(row)
+        print(column)
         self.performSegue(withIdentifier: "FVCtoDetailSegue", sender: self)
         
     }
