@@ -21,9 +21,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var publicOrNot = true
     
     var sendTheName = ""
-    
    
-    
+    var mainVote = 0
   
     //Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -77,11 +76,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
        messageUpdate()
         
-        
     }
     
-   
-
     @objc func messageUpdate(){
         DataService2.instance.getMessagesForASpecificGroup(publicOrNot: AppDelegate.group.publicOrNot!, name: AppDelegate.group.groupName!, idIfPrivate: AppDelegate.group.groupId!) { (messages1) in
             self.messages = messages1.sorted(by: {$0.time! < $1.time!})
@@ -126,30 +122,49 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return messages.count
     }
     
-    @objc func upvoteFunc(sender : UIButton){
+    @objc func upvoteFunc(sender : chatButton){
+        let cell = sender.superview?.superview as! ChatCell
         if(AppDelegate.popSendButtonAction == 0){
             DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
+//                var i = 0
+//                for eachMessage in self.messages{
+//                    if(eachMessage.id! == sender.messsage.id!){
+//                        self.messages[i].favCount = votes
+//                        break
+//                    }
+//                    i = i + 1;
+//                }
+                
+                self.messages[sender.tag].favCount = votes
+                //cell.favoriteCountLabel.text = String(votes)
                 print("\nvotes: \(votes)\n")
                 return
             }
         }
         else{
             DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
+                //cell.favoriteCountLabel.text = String(votes)
+                self.messages[sender.tag].favCount = votes
                 print("\nvotes: \(votes)\n")
                 return
             }
         }
     }
     
-    @objc func downvoteFunc(sender : UIButton){
+    @objc func downvoteFunc(sender : chatButton){
+        let cell = sender.superview?.superview as! ChatCell
         if(AppDelegate.popSendButtonAction == 0){
             DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
+                //cell.favoriteCountLabel.text = String(votes)
+                self.messages[sender.tag].favCount = votes
                 print("\nvotes: \(votes)\n")
                 
             }
         }
         else{
             DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
+                //cell.favoriteCountLabel.text = String(votes)
+                self.messages[sender.tag].favCount = votes
                 print("\nvotes: \(votes)\n")
             }
             
@@ -163,7 +178,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.textView.clipsToBounds = true
         cell.textView.layer.cornerRadius = 5
       
+        cell.upvoteButton.tag = indexPath.row
+        cell.downvoteButton.tag = indexPath.row
+        
+        cell.favoriteCountLabel.text = String(messages[indexPath.row].favCount!)
         self.id = messages[indexPath.row].id!
+        
+//        cell.upvoteButton.messsage = messages[indexPath.row]
+//        cell.downvoteButton.messsage = messages[indexPath.row]
+        
+        
+        
         
         cell.upvoteButton.addTarget(self, action: #selector(ChatViewController.upvoteFunc), for: UIControlEvents.touchUpInside)
         cell.downvoteButton.addTarget(self, action: #selector(ChatViewController.downvoteFunc), for: UIControlEvents.touchUpInside)

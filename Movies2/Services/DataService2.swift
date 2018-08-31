@@ -23,6 +23,7 @@ class DataService2{
     static let instance = DataService2()
     
     var messages: [Message] = []
+    var count = 0
     
     var REF_BASE2 = DB_BASE2
     
@@ -164,7 +165,7 @@ class DataService2{
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
                         
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId, favCount: dictVals["favoriteCount"] as! Int)
                         messageArray.append(message)
                     }
                     
@@ -183,7 +184,7 @@ class DataService2{
                     for (id, obj) in value {
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId)
+                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId, favCount: dictVals["favoriteCount"] as! Int)
                         messageArray.append(message)
                     }
                     handler(messageArray)
@@ -194,6 +195,26 @@ class DataService2{
             }
         }
     }
+//
+//    func checkFavCount(name: String, handler: @escaping (_ count: Int)->()){
+//        REF_BASE2.child("Groups").child("Public").child(name).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
+//            { (snapshot) in
+//                guard let value = snapshot.value as? NSDictionary else { return }
+//
+//                for (id, obj) in value {
+//                    let messageId = id as! String
+//                    let dictVals = obj as! [String: Any]
+//
+//                    self.count =  dictVals["favoriteCount"] as! Int
+//                }
+//
+//                handler(messageArray)
+//
+//        })
+//        { (error) in
+//            print(error.localizedDescription)
+//        }
+//    }
     
     func vote(isUpvote: Bool, groupName: String, isPublic: Bool, messageID: String, handler : @escaping (_ count: Int) -> () ){
         

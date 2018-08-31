@@ -13,8 +13,8 @@ class ChatCell: UITableViewCell {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var tvLeadingconstraint: NSLayoutConstraint!
     @IBOutlet weak var tvTrailingconstraint: NSLayoutConstraint!
-    @IBOutlet weak var upvoteButton: UIButton!
-    @IBOutlet weak var downvoteButton: UIButton!
+    @IBOutlet weak var upvoteButton: chatButton!
+    @IBOutlet weak var downvoteButton: chatButton!
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
     override func awakeFromNib() {
@@ -31,5 +31,7 @@ class ChatCell: UITableViewCell {
     func configureCell(content: String){
         textView.text = content
     }
+    
+    
 
 }

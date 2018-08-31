@@ -41,6 +41,7 @@
 		D51AEE1C2105B26F00077A66 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1B2105B26F00077A66 /* DetailViewController.swift */; };
 		D51AEE1E21063FA100077A66 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AEE1D21063FA100077A66 /* LoginViewController.swift */; };
 		D51DA36B2115E890005A3B71 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DA36A2115E890005A3B71 /* Group.swift */; };
+		D5331E0E2138B84E00D09387 /* chatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5331E0D2138B84D00D09387 /* chatButton.swift */; };
 		D544C260210D9A2400B739B1 /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */; };
 		D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */; };
 		D56B2B9E211B5F74000A749A /* SearchForGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56B2B9D211B5F74000A749A /* SearchForGroupViewController.swift */; };
@@ -120,6 +121,7 @@
 		D51AEE1B2105B26F00077A66 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D51AEE1D21063FA100077A66 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D51DA36A2115E890005A3B71 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		D5331E0D2138B84D00D09387 /* chatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatButton.swift; sourceTree = "<group>"; };
 		D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
 		D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		D56B2B9D211B5F74000A749A /* SearchForGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForGroupViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				C7D7B9DF210D07C700B542B3 /* PopOverReccCell.swift */,
 				D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */,
 				C7628948211841E60051816C /* ChatCell.swift */,
+				D5331E0D2138B84D00D09387 /* chatButton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				D58B0DE22110A0F8000DFD15 /* Message.swift in Sources */,
 				D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */,
 				D51AEE1E21063FA100077A66 /* LoginViewController.swift in Sources */,
+				D5331E0E2138B84E00D09387 /* chatButton.swift in Sources */,
 				D58B0DE0211098C0000DFD15 /* DataService2.swift in Sources */,
 				D51287022104A47300BF2689 /* ViewController.swift in Sources */,
 				C7D7B9E1210D07C700B542B3 /* PopOverReccCell.swift in Sources */,

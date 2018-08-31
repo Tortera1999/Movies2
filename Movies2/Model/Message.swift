@@ -14,14 +14,15 @@ class Message{
     var time: Int?
     var sender: String?
     var id: String?
+    var favCount: Int?
     
     
-    init(message: String, time: Int, sender: String, id: String){
+    init(message: String, time: Int, sender: String, id: String, favCount: Int){
         self.message = message
         self.time = time
         self.sender = sender
         self.id = id
-        
+        self.favCount = favCount
     }
     
    
