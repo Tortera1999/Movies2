@@ -142,6 +142,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func downvoteFunc(sender : UIButton){
+        
         if(AppDelegate.popSendButtonAction == 0){
             DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
                 print("\nvotes: \(votes)\n")

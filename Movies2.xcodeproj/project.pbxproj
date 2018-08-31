@@ -49,7 +49,7 @@
 		D58B0DE22110A0F8000DFD15 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B0DE12110A0F8000DFD15 /* Message.swift */; };
 		D5CE79F2211497B100C7D266 /* AddAGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */; };
 		D5CE79F421149AA700C7D266 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F321149AA700C7D266 /* GroupTableViewCell.swift */; };
-		D5CE79F62114B09500C7D266 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F52114B09500C7D266 /* ChatViewController.swift */; };
+		D5CE79F62114B09500C7D266 /* lo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE79F52114B09500C7D266 /* lo.swift */; };
 		D5D6C3DE21089C8500BA5740 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */; };
 		D5D6C3E021089DBD00BA5740 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5D6C3DF21089DBD00BA5740 /* GoogleService-Info.plist */; };
 		DEBBB10956FC94A708E3DED3 /* Pods_Movies2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C6C9C3FFAF7CE7EACE185C /* Pods_Movies2Tests.framework */; };
@@ -128,7 +128,7 @@
 		D58B0DE12110A0F8000DFD15 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAGroupViewController.swift; sourceTree = "<group>"; };
 		D5CE79F321149AA700C7D266 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
-		D5CE79F52114B09500C7D266 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D5CE79F52114B09500C7D266 /* lo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lo.swift; sourceTree = "<group>"; };
 		D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D5D6C3DF21089DBD00BA5740 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,7 +207,7 @@
 				D5D6C3DD21089C8500BA5740 /* RegisterPageViewController.swift */,
 				D51287302104A5FA00BF2689 /* FirstViewController.swift */,
 				D5CE79F1211497B100C7D266 /* AddAGroupViewController.swift */,
-				D5CE79F52114B09500C7D266 /* ChatViewController.swift */,
+				D5CE79F52114B09500C7D266 /* lo.swift */,
 				D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */,
 				D51287012104A47300BF2689 /* ViewController.swift */,
 				D51AEE1B2105B26F00077A66 /* DetailViewController.swift */,
@@ -567,7 +567,7 @@
 				C7D7B9E1210D07C700B542B3 /* PopOverReccCell.swift in Sources */,
 				D5CE79F2211497B100C7D266 /* AddAGroupViewController.swift in Sources */,
 				C77F624C210728C300A6FA1B /* GradientView.swift in Sources */,
-				D5CE79F62114B09500C7D266 /* ChatViewController.swift in Sources */,
+				D5CE79F62114B09500C7D266 /* lo.swift in Sources */,
 				C7D7B9DB210D05BF00B542B3 /* PopOverReccVC.swift in Sources */,
 				C77F624A21071FAD00A6FA1B /* CustomViewHomeTitle.swift in Sources */,
 				C750F9092104B44E00E9D250 /* Movie.swift in Sources */,
