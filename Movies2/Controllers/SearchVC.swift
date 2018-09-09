@@ -50,8 +50,8 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     @objc func goBtnPressed() {
         addSpinner()
         
-        DataService.instance.downloadDataBasedOnGenre(completion: { (success) in
-            if(success){
+        DataService.instance.downloadDataBasedOnGenre(completion: { (movie) in
+            if(movie != nil){
                     self.removeSpinner()
                     self.tableView.reloadData()
             }

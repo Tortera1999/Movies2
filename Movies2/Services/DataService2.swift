@@ -50,7 +50,7 @@ class DataService2{
         
         let timestamp = Int(Date().timeIntervalSince1970)
        
-        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : timestamp, "favoriteCount" : 0] as [String: Any]
+        let messageArr = ["message" : message, "sender" : (Auth.auth().currentUser?.uid)!, "time" : timestamp, "favoriteCount" : 0, "isUpvoted" : ""] as [String: Any]
         if(publicOrNot){
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Messages").child(idString).setValue(messageArr)
             self.REF_BASE2.child("Groups").child("Public").child(name).child("Members").child((Auth.auth().currentUser?.uid)!)
@@ -185,6 +185,9 @@ class DataService2{
                         let messageId = id as! String
                         let dictVals = obj as! [String: Any]
                         let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId, favCount: dictVals["favoriteCount"] as! Int)
+                        if(dictVals["isUpvoted"] as! String != ""){
+                            message.isUpvoted = dictVals["isUpvoted"] as! Bool
+                        }
                         messageArray.append(message)
                     }
                     handler(messageArray)
@@ -238,7 +241,7 @@ class DataService2{
                             currVotes = currVotes - 1
                         }
                         
-                        self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes])
+                        self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes, "isUpvoted" : isUpvote])
                         
                         handler(currVotes)
                        break
@@ -250,7 +253,9 @@ class DataService2{
          
         }
         else{
-            REF_BASE2.child("Groups").child("Private").child(groupName).child("Messages").observe(.value) { (messageSnapshot) in
+            
+            
+            REF_BASE2.child("Groups").child("Private").child(AppDelegate.group.groupId!).child("Messages").observeSingleEvent(of: .value) { (messageSnapshot) in
                 
                 guard let messageSnapshot = messageSnapshot.children.allObjects  as? [DataSnapshot] else { return }
                 
@@ -266,9 +271,12 @@ class DataService2{
                         
                        
                         
-                        self.REF_BASE2.child("Groups").child("Private").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes])
+                    self.REF_BASE2.child("Groups").child("Private").child(AppDelegate.group.groupId!).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes, "isUpvoted" : isUpvote])
+                        
+                        
                         
                         handler(currVotes)
+                        break
                     }
                 }
                 

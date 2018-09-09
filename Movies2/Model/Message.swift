@@ -15,6 +15,7 @@ class Message{
     var sender: String?
     var id: String?
     var favCount: Int?
+    var isUpvoted: Bool?
     
     
     init(message: String, time: Int, sender: String, id: String, favCount: Int){

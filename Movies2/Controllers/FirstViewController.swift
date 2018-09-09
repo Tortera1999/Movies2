@@ -95,7 +95,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func getAllMovies(){
         
         while(a < 5){
-            group.enter()
+            //group.enter()
             if(a == 0){
                 getDifferentGenreMovies(gId: ACTION_ID, name: "Action")
                 b = a
@@ -119,10 +119,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func getDifferentGenreMovies(gId: Int, name : String){
-        DataService.instance.downloadDataBasedOnGenre(completion: { (success) in
-            if(success){
-                self.movies = DataService.instance.movies
-                self.allGenreMovies.append(self.movies)
+        print("Genre Id : \(gId)")
+        DataService.instance.downloadDataBasedOnGenre(completion: { (movies) in
+            if let movies = movies {
+                self.movies = movies
+                self.allGenreMovies.append(movies)
                 
                 self.genretitles.append(name)
                 print(self.genretitles)
@@ -130,8 +131,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if(self.genretitles.count == 5){
                     self.moviesTableView.reloadData()
                 }
-                self.moviesTableView.reloadData()
-                self.group.leave()
+                //self.moviesTableView.reloadData()
+                //self.group.leave()
             }
             else{
                 print("False")
@@ -143,7 +144,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             })
         }, genreID: gId, keyword: "")
         
-        moviesTableView.reloadData()
+        //moviesTableView.reloadData()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -208,25 +209,17 @@ extension FirstViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-       
-        
-        
-        let tb = collectionView.superview?.superview?.superview as! UITableView
-        let idpath = tb.indexPath(for: collectionView.superview?.superview as! UITableViewCell) as! IndexPath
-        row = idpath.section
-        column = indexPath.row
-
-        print(idpath)
-        print(row)
-        print(column)
-        self.performSegue(withIdentifier: "FVCtoDetailSegue", sender: self)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MovieCollectionViewCell else {return}
+        let movie = cell.movie
+        self.performSegue(withIdentifier: "FVCtoDetailSegue", sender: movie)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "FVCtoDetailSegue"){
             if let vc = segue.destination as? DetailViewController{
-                vc.movie = allGenreMovies[column][row]
+                guard let movie = sender as? Movie else {return}
+                vc.movie = movie
             }
         }
     }

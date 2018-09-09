@@ -14,7 +14,7 @@ class chatButton: UIButton {
         super.awakeFromNib()
     }
 
-    public var messsage: Message = Message(message: "", time: 0, sender: "", id: "", favCount: 0)
+    //public var messsage: Message = Message(message: "", time: 0, sender: "", id: "", favCount: 0)
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

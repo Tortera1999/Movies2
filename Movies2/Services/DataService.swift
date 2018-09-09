@@ -107,7 +107,7 @@ class DataService{
     
     
     
-    func downloadDataBasedOnGenre(completion: @escaping CompletionHandler, genreID: Int, keyword: String){
+    func downloadDataBasedOnGenre(completion: @escaping ([Movie]?) -> (), genreID: Int, keyword: String){
         
         //creating url variable
         var url : URL = URL(string: "www.google.com")!
@@ -133,7 +133,7 @@ class DataService{
                     
                     if let array = json["results"].array{
                         
-                        self.movies = []
+                        var downloadedMovies: [Movie] = []
                         
                         for item in array{
                             let title = item["title"].stringValue
@@ -152,20 +152,21 @@ class DataService{
                             
                             
                             let movie = Movie(movieTitle: title, id: id, voteAverage: voteAverage, overview: overview, releaseDate: correctReleaseDate, poster: imgUrl, user: nil)
-                            self.movies.append(movie)
+                            downloadedMovies.append(movie)
                             NotificationCenter.default.post(name: Notification.Name("notifUserDataChanged"), object: nil)
                             
                             
                         }
+                        completion(downloadedMovies)
+
                     }
                 }catch{
                     
                 }
                 
-                completion(true)
             }else{
                 debugPrint(response.result.error)
-                completion(false)
+                completion(nil)
                 
             }
         }

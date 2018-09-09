@@ -125,46 +125,53 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func upvoteFunc(sender : chatButton){
         let cell = sender.superview?.superview as! ChatCell
         if(AppDelegate.popSendButtonAction == 0){
-            DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
-//                var i = 0
-//                for eachMessage in self.messages{
-//                    if(eachMessage.id! == sender.messsage.id!){
-//                        self.messages[i].favCount = votes
-//                        break
-//                    }
-//                    i = i + 1;
-//                }
-                
+            DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: messages[sender.tag].id!) { (votes) in
                 self.messages[sender.tag].favCount = votes
-                //cell.favoriteCountLabel.text = String(votes)
+                self.messages[sender.tag].isUpvoted = true
+                self.tableView.reloadData()
                 print("\nvotes: \(votes)\n")
+//                cell.upvoteButton.isHidden = true
+//                cell.downvoteButton.isHidden = false
                 return
             }
         }
         else{
-            DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
-                //cell.favoriteCountLabel.text = String(votes)
+            print(AppDelegate.group.groupName!)
+            DataService2.instance.vote(isUpvote: true, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: messages[sender.tag].id!) { (votes) in
                 self.messages[sender.tag].favCount = votes
+                self.messages[sender.tag].isUpvoted = true
+                self.tableView.reloadData()
+//                cell.upvoteButton.isHidden = true
+//                cell.downvoteButton.isHidden = false
                 print("\nvotes: \(votes)\n")
                 return
             }
         }
+        
+        
     }
     
     @objc func downvoteFunc(sender : chatButton){
         let cell = sender.superview?.superview as! ChatCell
         if(AppDelegate.popSendButtonAction == 0){
-            DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: self.id) { (votes) in
-                //cell.favoriteCountLabel.text = String(votes)
+            DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: true, messageID: messages[sender.tag].id!) { (votes) in
                 self.messages[sender.tag].favCount = votes
+                self.messages[sender.tag].isUpvoted = false
+                self.tableView.reloadData()
+//                cell.upvoteButton.isHidden = false
+//                cell.downvoteButton.isHidden = true
                 print("\nvotes: \(votes)\n")
                 
             }
         }
         else{
-            DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: self.id) { (votes) in
-                //cell.favoriteCountLabel.text = String(votes)
+            print("I am here??????")
+            DataService2.instance.vote(isUpvote: false, groupName: AppDelegate.group.groupName!, isPublic: false, messageID: messages[sender.tag].id!) { (votes) in
                 self.messages[sender.tag].favCount = votes
+                self.messages[sender.tag].isUpvoted = false
+                self.tableView.reloadData()
+//                cell.upvoteButton.isHidden = false
+//                cell.downvoteButton.isHidden = true
                 print("\nvotes: \(votes)\n")
             }
             
@@ -181,8 +188,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.upvoteButton.tag = indexPath.row
         cell.downvoteButton.tag = indexPath.row
         
+        
+        
+        if(messages[indexPath.row].isUpvoted != nil){
+        if(messages[indexPath.row].isUpvoted!){
+            cell.upvoteButton.isHidden = true
+            cell.downvoteButton.isHidden = false
+        } else{
+            cell.upvoteButton.isHidden = false
+            cell.downvoteButton.isHidden = true
+            
+        }
+        }
+        
         cell.favoriteCountLabel.text = String(messages[indexPath.row].favCount!)
-        self.id = messages[indexPath.row].id!
+        
+        
+        //self.id = messages[indexPath.row].id!
         
 //        cell.upvoteButton.messsage = messages[indexPath.row]
 //        cell.downvoteButton.messsage = messages[indexPath.row]
