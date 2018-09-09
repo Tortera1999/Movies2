@@ -159,16 +159,33 @@ class DataService2{
         if(publicOrNot){
             REF_BASE2.child("Groups").child("Public").child(name).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
                 { (snapshot) in
-                    guard let value = snapshot.value as? NSDictionary else { return }
+                    guard let snapshot = snapshot.children.allObjects  as? [DataSnapshot] else { return }
+                    
+                    print("getAllUserSubscribedPublicGroups:")
+                    print(snapshot)
                     var messageArray: [Message] = []
-                    for (id, obj) in value {
-                        let messageId = id as! String
-                        let dictVals = obj as! [String: Any]
+                    for snap in snapshot{
+                        guard let innerSnapshot = snap.childSnapshot(forPath: "message").value as? String else{ return }
+                        guard let innerSnapshot2 = snap.childSnapshot(forPath: "time").value as? Int else{ return }
+                        guard let innerSnapshot3 = snap.childSnapshot(forPath: "sender").value as? String else{ return }
+                        guard let innerSnapshot4 = snap.childSnapshot(forPath: "favoriteCount").value as? Int else{ return }
+                        guard let innerSnapshot5 = snap.key as? String else { return }
                         
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId, favCount: dictVals["favoriteCount"] as! Int)
+                        guard let upvoted = snap.childSnapshot(forPath: "Upvotes").children.allObjects as? [DataSnapshot] else { print("YOYO"); return}
+                        
+                        let message = Message(message: innerSnapshot, time: innerSnapshot2, sender: innerSnapshot3, id: innerSnapshot5, favCount: innerSnapshot4)
+                        
+                        //message.isUpvoted = false
+                        for item in upvoted{
+                            if(item.key == (Auth.auth().currentUser?.uid)!){
+                                message.isUpvoted = true
+                            }
+                        }
+                        
                         messageArray.append(message)
                     }
-                    
+
+
                     handler(messageArray)
                     messageArray = []
                     
@@ -179,19 +196,36 @@ class DataService2{
         } else{
             REF_BASE2.child("Groups").child("Private").child(idIfPrivate).child("Messages").queryOrdered(byChild: "time").observe(.value, with:
                 { (snapshot) in
-                    guard let value = snapshot.value as? NSDictionary else { return }
+                    guard let snapshot = snapshot.children.allObjects  as? [DataSnapshot] else { return }
+                    
+                    print("getAllUserSubscribedPublicGroups:")
+                    print(snapshot)
                     var messageArray: [Message] = []
-                    for (id, obj) in value {
-                        let messageId = id as! String
-                        let dictVals = obj as! [String: Any]
-                        let message = Message(message: dictVals["message"] as! String, time: dictVals["time"] as! Int, sender: dictVals["sender"] as! String, id: messageId, favCount: dictVals["favoriteCount"] as! Int)
-                        if(dictVals["isUpvoted"] as! String != ""){
-                            message.isUpvoted = dictVals["isUpvoted"] as! Bool
+                    for snap in snapshot{
+                        guard let innerSnapshot = snap.childSnapshot(forPath: "message").value as? String else{ return }
+                        guard let innerSnapshot2 = snap.childSnapshot(forPath: "time").value as? Int else{ return }
+                        guard let innerSnapshot3 = snap.childSnapshot(forPath: "sender").value as? String else{ return }
+                        guard let innerSnapshot4 = snap.childSnapshot(forPath: "favoriteCount").value as? Int else{ return }
+                        guard let innerSnapshot5 = snap.key as? String else { return }
+                        
+                        guard let upvoted = snap.childSnapshot(forPath: "Upvotes").children.allObjects as? [DataSnapshot] else { print("YOYO"); return}
+                        
+                        let message = Message(message: innerSnapshot, time: innerSnapshot2, sender: innerSnapshot3, id: innerSnapshot5, favCount: innerSnapshot4)
+                        
+                        //message.isUpvoted = false
+                        for item in upvoted{
+                            if(item.key == (Auth.auth().currentUser?.uid)!){
+                                message.isUpvoted = true
+                            }
                         }
+                        
                         messageArray.append(message)
                     }
+                    
+                    
                     handler(messageArray)
                     messageArray = []
+                    
             })
             { (error) in
                 print(error.localizedDescription)
@@ -236,13 +270,21 @@ class DataService2{
                         currVotes = message.childSnapshot(forPath: "favoriteCount").value as! Int
                         if(isUpvote){
                             currVotes = currVotes + 1
+                        self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).child("Upvotes").child((Auth.auth().currentUser?.uid)!).setValue((Auth.auth().currentUser?.uid)!)
+                            
+                        self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).child("Downvotes").child((Auth.auth().currentUser?.uid)!).removeValue()
                         }
                         else{
                             currVotes = currVotes - 1
+                            
+                        self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).child("Downvotes").child((Auth.auth().currentUser?.uid)!).setValue((Auth.auth().currentUser?.uid)!)
+                            
+                        self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).child("Upvotes").child((Auth.auth().currentUser?.uid)!).removeValue()
                         }
                         
                         self.REF_BASE2.child("Groups").child("Public").child(groupName).child("Messages").child(messageID).updateChildValues(["favoriteCount": currVotes, "isUpvoted" : isUpvote])
                         
+                    
                         handler(currVotes)
                        break
                     }
@@ -264,9 +306,17 @@ class DataService2{
                         currVotes = message.childSnapshot(forPath: "favoriteCount").value as! Int
                         if(isUpvote){
                             currVotes = currVotes + 1
+                            
+                        self.REF_BASE2.child("Groups").child("Private").child(AppDelegate.group.groupId!).child("Messages").child(messageID).child("Upvotes").child((Auth.auth().currentUser?.uid)!).setValue((Auth.auth().currentUser?.uid)!)
+                            
+                        self.REF_BASE2.child("Groups").child("Private").child(AppDelegate.group.groupId!).child(messageID).child("Downvotes").child((Auth.auth().currentUser?.uid)!).removeValue()
                         }
                         else{
                             currVotes = currVotes - 1
+                            
+                            self.REF_BASE2.child("Groups").child("Private").child(AppDelegate.group.groupId!).child("Messages").child(messageID).child("Downvotes").child((Auth.auth().currentUser?.uid)!).setValue((Auth.auth().currentUser?.uid)!)
+                            
+                            self.REF_BASE2.child("Groups").child("Private").child(AppDelegate.group.groupId!).child("Messages").child(messageID).child("Upvotes").child((Auth.auth().currentUser?.uid)!).removeValue()
                         }
                         
                        

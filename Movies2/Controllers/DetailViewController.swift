@@ -39,6 +39,8 @@ class DetailViewController: UIViewController {
        
 
         overviewTextView.text = movie.overview! + " Voter's average give this movie a \(Int(movie.voteAverage!))/10!"
+        
+        overviewTextView.isEditable = false
        
     }
 
