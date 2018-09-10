@@ -11,16 +11,21 @@ import FirebaseAuth
 import Firebase
 import FirebaseDatabase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+        view.addGestureRecognizer(tap)
     }
-
+    
+    @objc func handleTap(){
+        view.endEditing(true)
+    }
+    
     @IBAction func signIn(_ sender: Any) {
         //self.performSegue(withIdentifier: "loginSegue", sender: self)
         

@@ -44,6 +44,7 @@
 		D5331E0E2138B84E00D09387 /* chatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5331E0D2138B84D00D09387 /* chatButton.swift */; };
 		D544C260210D9A2400B739B1 /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */; };
 		D544C262210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */; };
+		D567CE842145E508004959E7 /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567CE832145E508004959E7 /* KeyboardBoundView.swift */; };
 		D56B2B9E211B5F74000A749A /* SearchForGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56B2B9D211B5F74000A749A /* SearchForGroupViewController.swift */; };
 		D56B2BA0211B5F97000A749A /* SearchForGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56B2B9F211B5F97000A749A /* SearchForGroupTableViewCell.swift */; };
 		D58B0DE0211098C0000DFD15 /* DataService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B0DDF211098C0000DFD15 /* DataService2.swift */; };
@@ -124,6 +125,7 @@
 		D5331E0D2138B84D00D09387 /* chatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatButton.swift; sourceTree = "<group>"; };
 		D544C25F210D9A2400B739B1 /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
 		D544C261210D9B3E00B739B1 /* RecommendedMoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesTableViewCell.swift; sourceTree = "<group>"; };
+		D567CE832145E508004959E7 /* KeyboardBoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBoundView.swift; sourceTree = "<group>"; };
 		D56B2B9D211B5F74000A749A /* SearchForGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForGroupViewController.swift; sourceTree = "<group>"; };
 		D56B2B9F211B5F97000A749A /* SearchForGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForGroupTableViewCell.swift; sourceTree = "<group>"; };
 		D58B0DDF211098C0000DFD15 /* DataService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService2.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				C750F90C21051C7000E9D250 /* InsetTextField.swift */,
 				C77F624921071FAD00A6FA1B /* CustomViewHomeTitle.swift */,
 				C77F624B210728C300A6FA1B /* GradientView.swift */,
+				D567CE832145E508004959E7 /* KeyboardBoundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				C77F624C210728C300A6FA1B /* GradientView.swift in Sources */,
 				D5CE79F62114B09500C7D266 /* ChatViewController.swift in Sources */,
 				C7D7B9DB210D05BF00B542B3 /* PopOverReccVC.swift in Sources */,
+				D567CE842145E508004959E7 /* KeyboardBoundView.swift in Sources */,
 				C77F624A21071FAD00A6FA1B /* CustomViewHomeTitle.swift in Sources */,
 				C750F9092104B44E00E9D250 /* Movie.swift in Sources */,
 				C7628949211841E60051816C /* ChatCell.swift in Sources */,
@@ -761,6 +765,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J58Z9KE9X9;
 				INFOPLIST_FILE = Movies2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nikhiliyer.Movies2;
@@ -776,6 +781,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J58Z9KE9X9;
 				INFOPLIST_FILE = Movies2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nikhiliyer.Movies2;

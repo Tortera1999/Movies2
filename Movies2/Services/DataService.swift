@@ -343,8 +343,37 @@ class DataService{
         }
     }
     
+    func getMoviesWatched(movieTitle: String,handler: @escaping (_ success: Bool)->()){
+        var successThis = false
+        REF_BASE.child("Users").observeSingleEvent(of: .value) { (usersSnapshot) in
+            guard let usersSnapshot = usersSnapshot.children.allObjects  as? [DataSnapshot] else { return }
+            
+            for user in usersSnapshot{
+                if user.key == Auth.auth().currentUser?.uid{
+                     guard let innerSnapshot = user.childSnapshot(forPath: "Watched").children.allObjects as? [DataSnapshot] else { return }
+                    
+                    for item in innerSnapshot{
+                        let movieTitle1 = item.childSnapshot(forPath: "movieTitle").value as! String
+                        
+                        if movieTitle == movieTitle1{
+                            successThis = true
+                        }
+                       
+                        
+                       
+                    }
+                }
+            }
+            handler(successThis)
+        }
+        
+        
+    }
+
+    
     
 }
+
 
 
 extension DateFormatter {

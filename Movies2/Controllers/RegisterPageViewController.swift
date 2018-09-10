@@ -19,8 +19,13 @@ class RegisterPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(RegisterPageViewController.handleTap))
+        view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func handleTap(){
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {

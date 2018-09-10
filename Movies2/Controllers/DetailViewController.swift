@@ -56,7 +56,20 @@ class DetailViewController: UIViewController {
     
     @IBAction func didWatch(_ sender: Any) {
         
-        DataService.instance.writeToFirebase(movie: self.movie)
+
+        
+        DataService.instance.getMoviesWatched(movieTitle: self.titleLabel.text!) { (failure) in
+            print(failure)
+            if(!failure){
+                print("shit")
+                DataService.instance.writeToFirebase(movie: self.movie)
+            }
+            
+            
+            
+        }
+        
+        
         dismiss(animated: true, completion: nil)
     }
     

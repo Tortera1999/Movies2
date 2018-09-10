@@ -72,10 +72,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             addFriendsButton.isHidden = false
             publicOrNot = false
         }
+        view.bindToKeyboard()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.handleTap))
+        view.addGestureRecognizer(tap)
         
        messageUpdate()
         
+    }
+    
+    @objc func handleTap(){
+        view.endEditing(true)
     }
     
     @objc func messageUpdate(){

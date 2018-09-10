@@ -16,6 +16,7 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     var spinner: UIActivityIndicatorView?
     var index: Int?
     
+    var movies : [Movie] = []
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -26,9 +27,14 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
         
         textField.addTarget(self, action: #selector(goBtnPressed), for: .editingChanged)
         
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+//        view.addGestureRecognizer(tap)
+        
     }
     
-    
+//    @objc func handleTap(){
+//        view.endEditing(true)
+//    }
     
     func addSpinner(){
         spinner = UIActivityIndicatorView()
@@ -50,12 +56,19 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     @objc func goBtnPressed() {
         addSpinner()
         
-        DataService.instance.downloadDataBasedOnGenre(completion: { (movie) in
-            if(movie != nil){
-                    self.removeSpinner()
-                    self.tableView.reloadData()
+        DataService.instance.downloadDataBasedOnGenre(completion: { (movvies) in
+            if(movvies != nil){
+                self.removeSpinner()
+                self.movies = movvies!
+                self.tableView.reloadData()
             }
         }, genreID: -1, keyword: textField.text!)
+//        DataService.instance.downloadDataBasedOnGenre(completion: { (movie) in
+//            if(movie != nil){
+//                    self.removeSpinner()
+//                    self.tableView.reloadData()
+//            }
+//        }, genreID: -1, keyword: textField.text!)
         
        self.removeSpinner()
     }
@@ -70,12 +83,12 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        //return DataService.instance.searches.count
-       return DataService.instance.movies.count
+       return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as? SearchTableViewCell{
-            let data = DataService.instance.movies[indexPath.row]
+            let data = movies[indexPath.row]
             cell.movie = data
             return cell
         }
@@ -90,7 +103,7 @@ class SearchVC: UIViewController, UITextFieldDelegate,UITableViewDataSource,UITa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "SVCtoDetailSegue"){
             if let vc = segue.destination as? DetailViewController{
-                vc.movie = DataService.instance.movies[index!]
+                vc.movie = movies[index!]
             }
         }
     }

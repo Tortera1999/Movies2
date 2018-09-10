@@ -43,6 +43,13 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         emailTextField.addTarget(self, action: #selector(searchFriends), for: .editingChanged)
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func handleTap(){
+        view.endEditing(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +114,7 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if(tableView == self.listOfFriendsTB){
         DataService.instance.addFriends(email: editedListOfFriends[indexPath.row], uid: editedListOfFriendsUID[indexPath.row])
             DataService.instance.getFriendsOfCurrUser { (returnedArray, returnedArrayUID) in
@@ -114,10 +122,13 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.myFriendsTableView.reloadData()
                 self.emailTextField.text = ""
                 self.searchFriends()
+                print("friend added")
             }
         }else{
             
         }
+        
+        
     }
     
 

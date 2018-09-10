@@ -77,10 +77,18 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
+        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+//        view.addGestureRecognizer(tap)
+        
         getAllMovies()
         
     }
-    
+//    
+//    @objc func handleTap(){
+//        view.endEditing(true)
+//    }
+//    
     
     
     override func viewDidAppear(_ animated: Bool) {
