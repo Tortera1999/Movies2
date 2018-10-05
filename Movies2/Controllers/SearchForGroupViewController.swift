@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchForGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchForGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
    
     @IBOutlet weak var searchTF: InsetTextField!
@@ -33,15 +33,17 @@ class SearchForGroupViewController: UIViewController, UITableViewDelegate, UITab
         
         searchTF.addTarget(self, action: #selector(goBtnPressed), for: .editingChanged)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
-        view.addGestureRecognizer(tap)
+        
+        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+//        view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view.
     }
     
-    @objc func handleTap(){
-        view.endEditing(true)
-    }
+//    @objc func handleTap(){
+//        view.endEditing(true)
+//    }
     @IBAction func dismissTheController(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

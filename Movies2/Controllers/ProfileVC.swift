@@ -42,7 +42,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             self.myListTableView.reloadData()
         }
         
-        profileImage.isUserInteractionEnabled = false
+//        profileImage.isUserInteractionEnabled = true
         
         userName.text = Auth.auth().currentUser?.email
         
@@ -52,10 +52,6 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
        
     }
     
-    @IBAction func editProfile(_ sender: Any) {
-        profileImage.isUserInteractionEnabled = true
-    }
-    
     @IBAction func changePic(_ sender: UITapGestureRecognizer) {
         
         print("Here in the profile pic change")
@@ -63,13 +59,13 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         vc.delegate = self
         vc.allowsEditing = true
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            print("Camera is available 📸")
-            vc.sourceType = UIImagePickerControllerSourceType.camera
-        } else {
-            print("Camera 🚫 available so we will use photo library instead")
-            vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        }
+//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            print("Camera is available 📸")
+//            vc.sourceType = UIImagePickerControllerSourceType.camera
+//        } else {
+//            print("Camera 🚫 available so we will use photo library instead")
+        vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        //}
         
         self.present(vc, animated: true, completion: nil)
     }
@@ -141,8 +137,8 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         let recommend = UITableViewRowAction(style: .normal, title: "Recommend") { action, index in
             DataService.instance.chosenMovie = self.moviesArray[indexPath.row]
             
-           let  popvc = self.storyboard?.instantiateViewController(withIdentifier: "PopOverReccVC")
-            self.present(popvc!, animated: true, completion: nil)
+           let  popvc = self.storyboard?.instantiateViewController(withIdentifier: "PopOverReccVC") as! PopOverReccVC
+            self.present(popvc, animated: true, completion: nil)
                     }
         recommend.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.168627451, blue: 0.1960784314, alpha: 1)
         

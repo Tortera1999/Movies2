@@ -21,15 +21,17 @@ class AddAGroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
-        view.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+//        view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view.
     }
 
-    @objc func handleTap(){
-        view.endEditing(true)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

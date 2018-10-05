@@ -107,8 +107,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBAction func addAFriend(_ sender: Any) {
         AppDelegate.popSendButtonAction = 1
-        let  popvc = self.storyboard?.instantiateViewController(withIdentifier: "PopOverReccVC")
-        self.present(popvc!, animated: true, completion: nil)
+        let  popvc = self.storyboard?.instantiateViewController(withIdentifier: "PopOverReccVC") as! PopOverReccVC
+        self.present(popvc, animated: true, completion: nil)
     }
     
     

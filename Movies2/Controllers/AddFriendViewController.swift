@@ -43,14 +43,19 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         emailTextField.addTarget(self, action: #selector(searchFriends), for: .editingChanged)
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
-        view.addGestureRecognizer(tap)
-        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+//        view.addGestureRecognizer(tap)
+//
     }
     
-    @objc func handleTap(){
-        view.endEditing(true)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
+    
+//    @objc func handleTap(){
+//        view.endEditing(true)
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         DataService.instance.getEmails { (returnedFriendsArray, returnedUIDArray) in

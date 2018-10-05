@@ -14,7 +14,8 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBOutlet weak var viewOut: UIView!
     @IBOutlet weak var tableView: UITableView!
-   
+    @IBOutlet weak var titleLabelForPOPVC: UILabel!
+    
     
     var friendsArray: [String] = []
     var friendsArrayUID: [String] = []
@@ -25,6 +26,11 @@ class PopOverReccVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(AppDelegate.popSendButtonAction == 0){
+            self.titleLabelForPOPVC.text = "Recommend Friends"
+        } else{
+            self.titleLabelForPOPVC.text = "Add Friends"
+        }
        tableView.delegate = self
         tableView.dataSource = self
         
